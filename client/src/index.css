@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*pri = primary, sec = secondary*/
+:root {
+  /*Used for buttons, highlights, and primary elements*/
+  --pri-color: #3F51B5;
+
+  /*Used for accents and secondary elements*/
+  --sec-color: #FF9800;
+  --bg-color: #FFFFFF;
+  --bg-color2: #f3f3f3;
+  --txt-color: #3b3b3b;
+
+  /*Used for borders, background accents, and subtle elements*/
+  --neutral-color: #e2e2e2;
+
+  /*Used to indicate errors or validation issues*/
+  --error-color: #F44336;
+
+  --px: 4rem;
+  --py: 1.5rem;
+
+  --max-width: 1400px;
+}
+
+[dark-theme]{
+  pri-color: #536DFE;
+  sec-color: #FFB74D;
+  bg-color: #121212;
+  txt-color: #FFFFFF;
+  --neutral-color: #424242;
+  --error-color: #EF5350;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden;
+  background: var(--bg-color);
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+section.template {
+  padding-inline: var(--px);
+  max-width: var(--max-width);
+  width: 100%;
+  margin-inline: auto;
+}
+
+.overflow-y-scroll::-webkit-scrollbar,
+.overflow-x-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+#home-card-what-will-you-manage{
+  word-spacing: -.25rem;
+}
+
+@media (width < 1280px) {
+  /*menu-top is used in nav for absolute top*/
+  :root {
+    --px: 2rem;
+    --py: 1.3rem;
+    --menu-top: 4.66rem;
+  }
+}
+
+@media (width < 1280px) {
+  /*menu-top is used in nav for absolute top*/
+  :root {
+    --px: 1.2rem;
+  }
+}
+
+@media (width <= 764px) {
+  :root {
+    --px: 1rem;
+    --py: 1rem;
+
+    --menu-top: 3.45rem;
+  }
+}
+
+
+@media (width <= 340px) {
+  :root {
+    --px: 0.5rem;
+    --py: 1rem;
+    --menu-top: 3.6rem;
+  }
+}
+
+@media (width < 320px) {
+  *{
+    overflow: scroll;
+  }
+}
