@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 
 
-const HomeCardChip = ({chipStyle ,chipTxt}) => {
+const HomeCardChip = ({chipStyle , txt}) => {
   return (
-    <button className={`${chipStyle} px-4 py-[0.4rem] rounded-3xl tracking-wide border border-[red]  800:py-[.5rem]`}>
-      {chipTxt}
+    <button className={`${chipStyle} cursor-auto px-4 py-[0.4rem] rounded-3xl tracking-wide  border 800:py-[.5rem]`}>
+      {txt}
     </button>
   )
 }

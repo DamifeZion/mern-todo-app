@@ -1,1 +1,1 @@
-export {homeData} from './homeData'
+export {default as homeData} from './homeData'

@@ -4,16 +4,18 @@ import vanguardLogo from "./vanguardLogo.svg";
 import remaxLogo from "./remaxLogo.svg";
 import weworkLogo from "./weworkLogo.svg";
 import harvardUniversityLogo from "./harvardUniversityLogo.svg";
+import quote1 from "./quote1.webp";
 
-import projectManagement from "./project-management.webp"
+import projectManagement from "./project-management.webp";
 
 export {
+  //Homepage
   hero,
   uberLogo,
   vanguardLogo,
   remaxLogo,
   weworkLogo,
   harvardUniversityLogo,
-  
-  projectManagement
+  projectManagement,
+  quote1,
 };

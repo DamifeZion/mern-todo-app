@@ -1,30 +1,34 @@
-import { Logo } from "../exportComponents";
+/* eslint-disable react/prop-types */
 import { BsArrowRightShort } from "react-icons/bs";
 import { BsArrowRight } from "react-icons/bs";
 import { projectManagement } from "../../assets/exportAssets";
 
+//The homeCardChip proprs comes from Home
 import HomeCardChip from "./HomeCardChip";
 
-const HomeCard = () => {
+const HomeCard = ({ homeCardChip }) => {
   return (
-    <div className=" flex flex-col border border-blue-600 w-full rounded-3xl bg-[--bg-color2] py-6 px-4 lgsm:py-7 700:px-5 1000:py-10 xl:py-[4.5rem] 1000:rounded-[1.8rem] xl:rounded-[4rem] 1xl:px-12">
+    <div className=" flex flex-col w-full rounded-3xl bg-[--bg-color2] py-6 px-4 lgsm:py-7 700:px-5 1000:py-10 xl:py-[4.5rem] 1000:rounded-[1.8rem] lg:rounded-[4rem] 1xl:px-12 ">
       <h2 className=" flex gap-1 justify-center text-[1.03rem] font-bold 700:text-[1.07rem] 1xl:text-[1.3rem]">
         Meet Task.flow Workspace
       </h2>
 
-      <h2 id="built-for-people-powering-teams" 
-        className="text-center mt-[.3rem] text-[2.1rem] leading-[1.1] place-self-center font-bold  lgsm:w-5/6 lgsm:text-[2.3rem] lgsm:leading-tight 600:w-4/6 700:text-[2.55rem] 700:tracking-tighter 700:leading-none 700:mt-[.8rem] 800:text-[3.8rem] 1xl:w-5/6 1xl:text-[4.5rem]">
+      <h2
+        id="built-for-people-powering-teams"
+        className="text-center mt-[.3rem] text-[2.1rem] leading-[1.1] place-self-center font-bold  lgsm:w-5/6 lgsm:text-[2.3rem] lgsm:leading-tight 600:w-4/6 700:text-[2.55rem] 700:tracking-tighter 700:leading-none 700:mt-[.8rem] 800:text-[3.8rem] "
+      >
         Built for people Powering teams.
       </h2>
 
-      <p className=" text-center mt-9 w-[92%] place-self-center leading-[1.3] sm:w-[93%] sm:text-[.915rem]  lgsm:text-[.95rem] 700:text-[1.1rem] 800:text-[1.05rem] 1000:text-[1.08rem] 1000:mt-12 1xl:text-[1.3rem]">
-        It’s how teams collaborate, manage work processes and their daily tasks. All in one place.
+      <p className=" text-center mt-9 w-[92%] place-self-center leading-[1.3] sm:w-[93%] sm:text-[.915rem]  lgsm:text-[.95rem] 700:text-[1.1rem] 800:text-[1.05rem]  1000:mt-12 2xl:w-[87%] 2xl:text-[1.4rem]">
+        It’s how teams collaborate, manage work processes and their daily tasks.
+        All in one place.
       </p>
 
       <h1
         className="
        place-self-center text-[--pri-color] flex  flex-wrap justify-center items-center w-10/12 mt-9
-       lgsm:text-[.98rem] lgsm:flex-nowrap lgsm:justify-center 700:text-[1.1rem] 700:mt-[4.5rem] 1xl:text-[1.5rem]
+       lgsm:text-[.98rem] lgsm:flex-nowrap lgsm:justify-center 700:text-[1.1rem] 700:mt-[4.5rem] 1xl:text-[1.2rem] 2xl:text-[1.45rem]
       "
       >
         <a className=" flex items-center gap-[.1rem] mr-7 cursor-pointer  lgsm:mr-6 lgsm:gap-0  700:mr-16">
@@ -42,27 +46,30 @@ const HomeCard = () => {
       </h1>
 
       <h1 className=" flex flex-col flex-wrap place-self-center mt-9 text-[.88rem] gap-2 sm:w-full sm:flex-row sm:gap-0 sm:items-center sm:justify-center lgsm:flex-row lgsm:flex-wrap 700:mt-[4.5rem] 700:text-[1.1rem] 700:gap-3">
-
-        <span className="cursor-pointer font-semibold text-[.88rem] text-center  sm:mr-[.6rem]  700:text-[1.1rem] 1xl:font-bold 1xl:text-[1.35rem]">
+        <span className="cursor-pointer font-semibold text-[.88rem] text-center  sm:mr-[.6rem]  700:text-[1.1rem] 1xl:font-bold 2xl:text-[1.5rem]">
           Project management
         </span>
 
-        <a className="flex items-center gap-[.6rem] font-semibold cursor-pointer hover:text-[--pri-color] ease duration-200  sm:gap-[.4rem] sm:w-fit sm:mr-[.6rem]  700:gap-4 1xl:text-[1.35rem] 1xl:font-bold">
+        <a className="flex items-center gap-[.6rem] font-semibold cursor-pointer hover:text-[--pri-color] ease duration-200  sm:gap-[.4rem] sm:w-fit sm:mr-[.6rem]  700:gap-4 1xl:font-bold 2xl:text-[1.5rem]">
           {/*watch here for sm:mr*/}
-          <i className=" bg-[--txt-color] w-[2.3px] h-[1.75rem]  700:w-[2.8px] 1xl:w-[3.37px]" />
-          <p className="">Chat & Collaboration</p>
+          <i className=" bg-[--txt-color] w-[2.3px] h-[1.75rem]  700:w-[2.8px] 1xl:w-[3.37px] 2xl:w-[3.33px]" />
+          <p>Chat & Collaboration</p>
         </a>
 
-        <a className="flex place-self-center items-center gap-[.6rem] font-semibold cursor-pointer hover:text-[--pri-color] ease duration-300  sm:gap-[.6rem]  700:gap-4 1xl:text-[1.35rem] 1xl:font-bold">
-          <i className=" bg-[--txt-color] w-[2px] h-[1.75rem] sm:w-[2.4px] 700:w-[2.4px]" />
+        <a className="flex place-self-center items-center gap-[.6rem] font-semibold cursor-pointer hover:text-[--pri-color] ease duration-300  sm:gap-[.6rem]  700:gap-4 1xl:font-bold 2xl:text-[1.5rem]">
+          <i className=" bg-[--txt-color] w-[2px] h-[1.75rem] sm:w-[2.4px] 700:w-[2.4px] 2xl:w-[3.33px]" />
 
-          <p className="">Daily Planner</p>
+          <p>Daily Planner</p>
         </a>
       </h1>
 
-      <img src={projectManagement} alt="project management" className="mt-9 place-self-center  1000:w-[90%] 1000:mt-10 1xl:w-[85%]" />
+      <img
+        src={projectManagement}
+        alt="project management"
+        className="mt-9 place-self-center  1000:w-[90%] 1000:mt-10  lg:w-[85%]"
+      />
 
-      <ol className="mt-9 flex flex-col gap-5 text-[.78rem]  lgsm:gap-[.43rem] lgsm:flex-row lgsm:justify-between lgsm:text-[.68rem] 600:text-[.85rem] 700:justify-normal 700:gap-20 800:gap-32 800:font-light 1000:gap-[14.4rem] lg:gap-[14rem] 1xl:ml-7 1xl:text-[1.05rem] 1xl:gap-[9rem]">
+      <ol className="mt-9 flex flex-col gap-5 text-[.78rem]  lgsm:gap-[.43rem] lgsm:flex-row lgsm:justify-between lgsm:text-[.68rem] 600:text-[.80rem] 700:justify-normal 700:gap-20 800:gap-32 800:font-light 1000:gap-[14.4rem] 1000:ml-10 lg:gap-[14rem] xl:ml-12 2xl:gap-[12rem] 2xl:text-[1.1rem]">
         <ul>
           <li className=" flex  items-center gap-2 ">
             <i className=" w-[6.1px] h-[6.1px] mt-2 rounded-full bg-[--txt-color]" />
@@ -98,21 +105,20 @@ const HomeCard = () => {
         </ul>
       </ol>
 
-      <h1 id="home-card-what-will-you-manage" className="mt-9 text-center text-[2.15rem] font-bold items-center justify-center  sm:text-[2rem] lgsm:text-[1.9rem] 600:text-[2.3rem] 800:text-[3rem] 1000:mt-14 1xl:text-[3.7rem]">
+      <h1
+        id="home-card-what-will-you-manage"
+        className="mt-9 text-center place-self-center text-[2.15rem] font-bold items-center justify-center  sm:text-[2rem] lgsm:text-[1.9rem] 600:text-[2.3rem] 800:text-[3rem] 1000:mt-14 1000:w-11/12 xl:text-[2.8rem] 2xl:text-[3.8rem]"
+      >
         What will you manage with Task.flow Workspace?
       </h1>
 
-      <div className="mt-9 flex-wrap flex items-center justify-center gap-3 place-self-center  600:w-11/12 800:w-full border border-blue-600">
-        <HomeCardChip chipTxt={"message"} />
-        <HomeCardChip chipTxt={"Design"} />
-        <HomeCardChip chipTxt={"Product management"} />
-        <HomeCardChip chipTxt={"HR"} />
-        <HomeCardChip chipTxt={"Remote work"} />
-        <HomeCardChip chipTxt={"Sales"} />
-        <HomeCardChip chipTxt={"Customer success"} />
-        <HomeCardChip chipTxt={"Finance"} />
-        <HomeCardChip chipTxt={"Dev teams"} />
-        <HomeCardChip chipTxt={"Project management"} />
+      <div className="mt-9 flex-wrap flex items-center justify-center gap-3 place-self-center  600:w-11/12 700:w-full lg:w-11/12">
+        {homeCardChip.map((data, index) => (
+          <HomeCardChip key={index} 
+            txt={data.txt}
+            chipStyle={data.chipStyle}
+          />
+        ))}
       </div>
 
       <button className="mt-9 flex gap-2 bg-[--pri-color] w-fit place-self-center py-[.9rem] px-7 rounded-full text-[.75rem] text-[--bg-color] font-medium tracking-wider group  600:mt-12 600:px-9 600:text-[.85rem] 700:mt-16">

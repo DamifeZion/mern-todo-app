@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const PcMenu = () => {
   return (
     <div className={`text-[--accent1] select-none`}>
-      <ul className={`flex items-center text-[1rem] xl:text-[1.25rem] `}>
+      <ul className={`flex items-center text-[1rem] xl:text-[1.2rem] `}>
         <ol className="flex items-center gap-5 font-medium w-full text-center mr-9">
           <Link to="/">Home</Link>
 

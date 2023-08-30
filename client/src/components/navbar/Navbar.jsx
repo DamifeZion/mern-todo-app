@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { AssignmentTurnedInOutlined } from "@mui/icons-material";
+// import { AssignmentTurnedInOutlined } from "@mui/icons-material";
 import { MdDragHandle } from "react-icons/md";
 
 import { useMediaQuery } from "@mui/material";
@@ -10,29 +10,29 @@ import { mobileMenuSlice } from "../../features/slices/exportSlices";
 import MobileMenu from "./MobileMenu";
 import PcMenu from "./PcMenu";
 
-const todoIconResponsiveness = {
-  mobile: {
-    fontSize: "1rem",
-  },
+// const todoIconResponsiveness = {
+//   mobile: {
+//     fontSize: "1rem",
+//   },
 
-  tab: {
-    "@media (min-width: 341px)": {
-      fontSize: "1.3rem",
-    },
-  },
+//   tab: {
+//     "@media (min-width: 341px)": {
+//       fontSize: "1.3rem",
+//     },
+//   },
 
-  pc: {
-    "@media (min-width: 764px)": {
-      fontSize: "2rem",
-    },
-  },
+//   pc: {
+//     "@media (min-width: 764px)": {
+//       fontSize: "2rem",
+//     },
+//   },
 
-  monitor: {
-    "@media (min-width: 1440px)": {
-      fontSize: "2.5rem"
-    }
-  }
-};
+//   monitor: {
+//     "@media (min-width: 1440px)": {
+//       fontSize: "3rem"
+//     }
+//   }
+// };
 
 const Navbar = () => {
   //Toggle menu from redux
@@ -52,18 +52,10 @@ const Navbar = () => {
 
         <Link
           to="/"
-          className=" flex flex-row-reverse items-center w-fit gap-2 font-semibold tracking-wide text-xs sm:text-sm md:text-md lg:text-lg  2xl:text-3xl"
+          className=" flex flex-row-reverse items-center w-fit gap-2 font-bold tracking-wide text-md lgsm:text-lg lg:text-[1.8rem] xl:text-[2rem] "
         >
           <h1 className=" font-poppins">Task.flow</h1>
-          <AssignmentTurnedInOutlined
-            className="text-[--pri-color]"
-            sx={{
-              ...todoIconResponsiveness.mobile,
-              ...todoIconResponsiveness.tab,
-              ...todoIconResponsiveness.pc,
-              ...todoIconResponsiveness.monitor,
-            }}
-          />
+
         </Link>
 
         {/*Menu*/}
@@ -72,7 +64,7 @@ const Navbar = () => {
 
         <span
           onClick={handleToggleMenu}
-          className=" absolute lg:hidden top-1/2 -translate-y-1/2 right-[--px] text-[2rem] px-[0.2rem] py-[0.2rem] md:px-2 md:py-1 shadow-sm rounded-md"
+          className=" absolute lg:hidden top-1/2 -translate-y-1/2 right-[--px] text-[2rem] px-[0.2rem] py-[0.2rem] md:px-2 md:py-1 shadow-mobileHam rounded-md"
         >
           <MdDragHandle />
         </span>
