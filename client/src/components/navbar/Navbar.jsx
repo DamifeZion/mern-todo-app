@@ -10,30 +10,6 @@ import { mobileMenuSlice } from "../../features/slices/exportSlices";
 import MobileMenu from "./MobileMenu";
 import PcMenu from "./PcMenu";
 
-// const todoIconResponsiveness = {
-//   mobile: {
-//     fontSize: "1rem",
-//   },
-
-//   tab: {
-//     "@media (min-width: 341px)": {
-//       fontSize: "1.3rem",
-//     },
-//   },
-
-//   pc: {
-//     "@media (min-width: 764px)": {
-//       fontSize: "2rem",
-//     },
-//   },
-
-//   monitor: {
-//     "@media (min-width: 1440px)": {
-//       fontSize: "3rem"
-//     }
-//   }
-// };
-
 const Navbar = () => {
   //Toggle menu from redux
   const dispatch = useDispatch();
@@ -60,7 +36,7 @@ const Navbar = () => {
 
         {/*Menu*/}
 
-        {!isMobile ? <PcMenu /> : <MobileMenu />}
+        {!isMobile ? <PcMenu /> : <MobileMenu/>}
 
         <span
           onClick={handleToggleMenu}

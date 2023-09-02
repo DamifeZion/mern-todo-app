@@ -7,19 +7,19 @@
 /*pri = primary, sec = secondary*/
 :root {
   /*Used for buttons, highlights, and primary elements*/
-  --pri-color: #3F51B5;
+  --pri-color: #3f51b5;
 
   /*Used for accents and secondary elements*/
-  --sec-color: #FF9800;
-  --bg-color: #FFFFFF;
+  --bg-color: #ffffff;
   --bg-color2: #f3f3f3;
   --txt-color: #3b3b3b;
 
   /*Used for borders, background accents, and subtle elements*/
   --neutral-color: #e2e2e2;
+  --neutral-color2: #424242;
 
   /*Used to indicate errors or validation issues*/
-  --error-color: #F44336;
+  --error-color: #f44336;
 
   --px: 3rem;
   --py: 1.5rem;
@@ -27,19 +27,11 @@
   --max-width: 1400px;
 }
 
-[dark-theme]{
-  pri-color: #536DFE;
-  sec-color: #FFB74D;
-  bg-color: #121212;
-  txt-color: #FFFFFF;
-  --neutral-color: #424242;
-  --error-color: #EF5350;
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  transition: ease 0.2s;
 }
 
 body {
@@ -61,41 +53,55 @@ section.template {
   display: none;
 }
 
-#home-card-what-will-you-manage{
-  word-spacing: -.25rem;
+/*Disabled button for registrations*/
+.disabled-button {
+  background-color: #f2f2f2;
+  color: #999999;
 }
 
+/*Footer*/
+footer li{
+  cursor: pointer;
+  color: var(--neutral-color2);
+}
+
+footer li:hover{
+  color: black;
+}
+
+/*Home*/
+#home-card-what-will-you-manage {
+  word-spacing: -0.25rem;
+}
 
 @media (width < 1280px) {
   /*menu-top is used in nav for absolute top*/
   :root {
     --px: 2rem;
-    --py: 1.3rem;
+    --py: 1rem;
     --menu-top: 4.66rem;
   }
 }
-
 
 @media (width <= 764px) {
   :root {
     --px: 1rem;
     --py: 1rem;
 
-    --menu-top: 3.45rem;
+    --menu-top: 4rem;
   }
 }
 
-
-@media (width <= 340px) {
+@media (width <= 480px) {
   :root {
-    --px: 0.5rem;
-    --py: 1rem;
-    --menu-top: 3.6rem;
+    --px: 0.7rem;
+    --py: .7rem;
+    --menu-top: 3.3rem;
   }
 }
 
 @media (width < 320px) {
-  *{
+  * {
     overflow: scroll;
   }
 }

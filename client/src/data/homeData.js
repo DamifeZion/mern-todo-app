@@ -1,3 +1,6 @@
+//homeMigratingChip logo img
+import { trello, clickup, monday, asana, todoist } from "../assets/exportAssets"
+
 const homeData = {
   homeCardChip: [
     {
@@ -42,6 +45,29 @@ const homeData = {
     },
 
   ],
+
+  homeMigratingChip: [
+    {
+      img: trello,
+      txt: 'Trello'
+    },
+    {
+      img: clickup,
+      txt: 'ClickUp'
+    },
+    {
+      img: monday,
+      txt: 'Monday.com'
+    },
+    {
+      img: asana,
+      txt: 'Asana'
+    },
+    {
+      img: todoist,
+      txt: 'Todoist'
+    },
+  ]
 
 
 };

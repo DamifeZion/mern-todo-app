@@ -2,6 +2,7 @@
 import { BsArrowRightShort } from "react-icons/bs";
 import { BsArrowRight } from "react-icons/bs";
 import { projectManagement } from "../../assets/exportAssets";
+import { Link } from "react-router-dom";
 
 //The homeCardChip proprs comes from Home
 import HomeCardChip from "./HomeCardChip";
@@ -31,11 +32,11 @@ const HomeCard = ({ homeCardChip }) => {
        lgsm:text-[.98rem] lgsm:flex-nowrap lgsm:justify-center 700:text-[1.1rem] 700:mt-[4.5rem] 1xl:text-[1.2rem] 2xl:text-[1.45rem]
       "
       >
-        <a className=" flex items-center gap-[.1rem] mr-7 cursor-pointer  lgsm:mr-6 lgsm:gap-0  700:mr-16">
+        <Link to='/login' className=" flex items-center gap-[.1rem] mr-7 cursor-pointer  lgsm:mr-6 lgsm:gap-0  700:mr-16">
           {/*watch the mr-7 for res*/}
           Learn more
           <BsArrowRightShort className=" text-[1.4rem] 1xl:text-[2rem]" />
-        </a>
+        </Link>
 
         <a className=" flex items-center cursor-pointer  lgsm:mr-2">Contact</a>
 
@@ -69,7 +70,7 @@ const HomeCard = ({ homeCardChip }) => {
         className="mt-9 place-self-center  1000:w-[90%] 1000:mt-10  lg:w-[85%]"
       />
 
-      <ol className="mt-9 flex flex-col gap-5 text-[.78rem]  lgsm:gap-[.43rem] lgsm:flex-row lgsm:justify-between lgsm:text-[.68rem] 600:text-[.80rem] 700:justify-normal 700:gap-20 800:gap-32 800:font-light 1000:gap-[14.4rem] 1000:ml-10 lg:gap-[14rem] xl:ml-12 2xl:gap-[12rem] 2xl:text-[1.1rem]">
+      <ol className="mt-9 flex flex-col gap-5 text-[.78rem]  lgsm:gap-[.43rem] lgsm:flex-row lgsm:justify-between lgsm:text-[.68rem] 600:text-[.85rem] 700:justify-normal 700:gap-20 800:gap-32 800:font-light 1000:gap-[14.4rem] 1000:ml-10 lg:gap-[14rem] xl:ml-12 2xl:gap-[12rem] 2xl:text-[1.1rem]">
         <ul>
           <li className=" flex  items-center gap-2 ">
             <i className=" w-[6.1px] h-[6.1px] mt-2 rounded-full bg-[--txt-color]" />
@@ -112,27 +113,25 @@ const HomeCard = ({ homeCardChip }) => {
         What will you manage with Task.flow Workspace?
       </h1>
 
-      <div className="mt-9 flex-wrap flex items-center justify-center gap-3 place-self-center  600:w-11/12 700:w-full lg:w-11/12">
+      <div className="mt-9 flex-wrap flex items-center justify-center gap-3 place-self-center  600:w-11/12 800:w-full lg:w-11/12">
         {homeCardChip.map((data, index) => (
-          <HomeCardChip key={index} 
-            txt={data.txt}
-            chipStyle={data.chipStyle}
-          />
+          <HomeCardChip key={index} txt={data.txt} chipStyle={data.chipStyle} />
         ))}
       </div>
 
-      <button className="mt-9 flex gap-2 bg-[--pri-color] w-fit place-self-center py-[.9rem] px-7 rounded-full text-[.75rem] text-[--bg-color] font-medium tracking-wider group  600:mt-12 600:px-9 600:text-[.85rem] 700:mt-16">
-        Get Started
-        <BsArrowRight className=" place-self-center group-hover:translate-x-[0.35rem] ease duration-200" />
-      </button>
+    
+        <Link to='/login' className="mt-9 flex gap-2 bg-[--pri-color] w-fit place-self-center py-[.9rem] px-7 rounded-full text-[.75rem] text-[--bg-color] font-medium tracking-wider group  600:mt-12 600:px-9 600:text-[.85rem] 700:mt-16">
+          Get Started
+          <BsArrowRight className=" place-self-center group-hover:translate-x-[0.35rem] ease duration-200" />
+        </Link>
 
-      <h1 className="flex flex-col items-center font-bold text-center mt-6 tracking-wide  600:mt-12 600:text-[1.1rem] 900:text-[1.15rem] 1xl:text-[1.5rem]">
+      <Link to='/login' className="flex flex-col items-center font-bold text-center mt-6 tracking-wide  600:mt-12 600:text-[1.1rem] 900:text-[1.15rem] 1xl:text-[1.5rem]">
         Already using a project management tool?
         <span className=" flex items-center leading-tight cursor-pointer text-[--pri-color]">
           Use 1 Click Import
           <BsArrowRightShort className=" text-[1.4rem] 1xl:text-[2rem]" />
         </span>
-      </h1>
+      </Link>
     </div>
   );
 };
