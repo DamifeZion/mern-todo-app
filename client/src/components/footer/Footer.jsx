@@ -58,7 +58,7 @@ const Footer = () => {
       <div className="bg-gray-900 py-4 text-[.8rem] lgsm:text-[1rem]">
         <div className="container mx-auto text-center">
           <p>
-            &copy; {new Date().getFullYear()} Your Company. All rights reserved.
+            &copy; {new Date().getFullYear()} Task.flow. All rights reserved.
           </p>
         </div>
       </div>
