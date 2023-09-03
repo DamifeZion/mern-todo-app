@@ -10,9 +10,10 @@ import {
   Signup,
 
   //user must be authorized
-  RequireAuth,
   Dashboard,
 } from "./pages/exportPages";
+
+import { RequireAuth } from "./middleWares/exportMiddleWare";
 
 function App() {
   return (
