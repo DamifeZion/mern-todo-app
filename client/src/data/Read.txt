@@ -1,5 +1,5 @@
 VERY IMPORTANT!!!
 
-This is a folder that is used to store every single data that will be mapped to a component, doesn,t come from an API. 
+This is a folder that is used to store every single data that will be mapped to a component. This doesn't come from an API. 
 
-Each file contains a every data to be mapped into every component for each page.
+Each file contains every data to be mapped into a component/page.
