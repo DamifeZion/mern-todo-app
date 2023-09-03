@@ -2,11 +2,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //Component Imports
 import {
+  //user not need be authorized
   Home,
   About,
   Login,
   PasswordReset,
   Signup,
+
+  //user must be authorized
+  RequireAuth,
   Dashboard,
 } from "./pages/exportPages";
 
@@ -20,9 +24,18 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/password/reset" element={<PasswordReset />} />
             <Route path="*" element={"404 Page Not Found"} />
+
+            {/*User must be authorized to access the below*/}
+            <Route
+              path="/dashboard"
+              element={
+                <RequireAuth>
+                  <Dashboard />
+                </RequireAuth>
+              }
+            />
           </Routes>
         </main>
       </BrowserRouter>

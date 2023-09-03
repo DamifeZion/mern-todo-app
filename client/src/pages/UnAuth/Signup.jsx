@@ -1,15 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signupSlice } from "../features/slices/exportSlices";
+import { signupSlice } from "../../features/slices/exportSlices";
 import { FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { AiOutlineUser, AiOutlineUserAdd } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 
-import { dot } from "../assets/exportAssets";
+import { dot } from "../../assets/exportAssets";
 // eslint-disable-next-line no-unused-vars
-import { ErrorMessage, SuccessMessage } from "../components/exportComponents";
+import { ErrorMessage, Loading } from "../../components/exportComponents";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -81,8 +81,8 @@ const Signup = () => {
   }
 
   const navigate = useNavigate();
-  const buttonRef = useRef(null)
-  
+  const buttonRef = useRef(null);
+
   function handleSubmit(e) {
     e.preventDefault();
     const passwordCondition = passwordConditionRef.current;
@@ -93,8 +93,8 @@ const Signup = () => {
 
     console.log("submitted");
 
-    //if api is loading run the below 
-    //buttonRef.current.classList.add('disabled-button')
+    //if api is loading run the below
+    buttonRef.current.classList.add("disabled-button");
     //else buttonref.current.classList.remove('disabled-button')
 
     //clear all input value
@@ -131,7 +131,7 @@ const Signup = () => {
         </h2>
 
         <small className=" mt-6 w-fit  flex">
-          {error && <SuccessMessage message={error} />}
+          {error && <ErrorMessage message={error} />}
         </small>
 
         <div className=" flex flex-col gap-3 mt-4">
@@ -263,6 +263,13 @@ const Signup = () => {
           </a>
         </small>
       </form>
+
+      {/*Bellow is for when make API request loading*/}
+      {/* {isLoading ? (
+        <div className="fixed w-full h-screen top-0 right-1/2 translate-x-1/2">
+          <Loading />
+        </div>
+      ) : null} */}
     </div>
   );
 };

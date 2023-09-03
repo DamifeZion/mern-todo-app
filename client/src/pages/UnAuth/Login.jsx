@@ -1,13 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
+import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginSlice } from "../features/slices/exportSlices";
+import { loginSlice } from "../../features/slices/exportSlices";
 import { FaUserCircle, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 
-import { dot } from "../assets/exportAssets";
+import { dot } from "../../assets/exportAssets";
 // eslint-disable-next-line no-unused-vars
-import { ErrorMessage, SuccessMessage } from "../components/exportComponents";
+import { ErrorMessage, Loading } from "../../components/exportComponents";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -34,17 +35,24 @@ const Login = () => {
     }
   }
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const buttonRef = useRef(null);
+
   function handleSubmit(e) {
     e.preventDefault();
     console.log("submitted");
 
+    //if api is loading run the below
+    buttonRef.current.classList.add("disabled-button");
+    //else buttonref.current.classList.remove('disabled-button')
+
     //clear all input value
     dispatch(loginSlice.actions.resetValue());
     //If user Authuorized redirect below
+
     setTimeout(() => {
-      navigate('/dashboard')
-    }, 1000)
+      navigate("/dashboard");
+    }, 1000);
   }
 
   //Password visibility
@@ -141,6 +149,7 @@ const Login = () => {
         </div>
 
         <button
+          ref={buttonRef}
           onClick={handleSubmit}
           className=" px-4 py-3 bg-[--pri-color] text-[--bg-color] w-full rounded-3xl mt-9"
         >
@@ -168,6 +177,13 @@ const Login = () => {
           </a>
         </small>
       </form>
+
+      {/*Bellow is for when make API request loading*/}
+      {/* {isLoading ? (
+        <div className="fixed w-full h-screen top-0 right-1/2 translate-x-1/2">
+          <Loading />
+        </div>
+      ) : null} */}
     </div>
   );
 };

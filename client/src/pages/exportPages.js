@@ -1,6 +1,10 @@
-export {default as Home} from './Home'
-export {default as About} from './About'
-export {default as Login} from './Login'
-export {default as Signup} from './Signup'
-export {default as PasswordReset} from './PasswordReset'
-export {default as Dashboard} from './Dashboard/Dashboard'
+//User needs need not be authorized to access the below
+export { default as Home } from "./UnAuth/Home";
+export { default as About } from "./UnAuth/About";
+export { default as Login } from "./UnAuth/Login";
+export { default as Signup } from "./UnAuth/Signup";
+export { default as PasswordReset } from "./UnAuth/PasswordReset";
+
+//User needs to be authorized to access the below
+export {default as RequireAuth} from './Auth/RequireAuth'
+export { default as Dashboard } from "./Auth/Dashboard/Dashboard";

@@ -4,7 +4,7 @@ import {
   HeroCTA,
   HomeCard,
   HomeMigratingChip,
-} from "../components/exportComponents";
+} from "../../components/exportComponents";
 import {
   hero,
   uberLogo,
@@ -13,12 +13,12 @@ import {
   weworkLogo,
   harvardUniversityLogo,
   quote1,
-} from "../assets/exportAssets";
+} from "../../assets/exportAssets";
 
 //dependencies
 import { Link } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
-import { homeData } from "../data/exportData";
+import { homeData } from "../../data/exportData";
 import { BsArrowRight } from "react-icons/bs";
 
 //array of data for the workspace chips

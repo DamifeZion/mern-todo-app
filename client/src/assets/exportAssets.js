@@ -11,13 +11,13 @@ import clickup from "./ic_clickup.svg";
 import monday from "./ic_monday.svg";
 import asana from "./ic_asana.svg";
 import todoist from "./ic_todoist.svg";
+import loading from './loading.svg';
 
 import projectManagement from "./project-management.webp";
 
 export {
   dot,
-  
-  //Homepage
+
   hero,
   uberLogo,
   vanguardLogo,
@@ -26,6 +26,7 @@ export {
   harvardUniversityLogo,
   projectManagement,
   quote1,
+  loading,
 
   //migrating platforms icons
   trello,
