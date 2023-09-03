@@ -8,8 +8,8 @@ const authSlice = createSlice({
   },
 
   reducers: {
-    authed: (state) => {
-      state.auth = !state.auth;
+    authed: (state, action) => {
+      state.auth = action.payload;
     },
   },
 });

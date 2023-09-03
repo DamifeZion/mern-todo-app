@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { dot } from "../../assets/exportAssets";
 // eslint-disable-next-line no-unused-vars
 import { ErrorMessage, Loading } from "../../components/exportComponents";
+import { signupMiddleware } from "../../middleWares/exportMiddleWare";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -32,44 +33,12 @@ const Signup = () => {
     dispatch(signupSlice.actions.emailFunc(e.target.value));
   }
 
-  //Below is to collect the password value but also make sure the conditions are met
+  //Below collects the password value but also make sure the conditions are met
   const passwordConditionRef = useRef(null);
-
   function handlePasswordChange(e) {
     const passwordCondition = passwordConditionRef.current;
     const listItems = passwordCondition.querySelectorAll("li");
-
-    const hasUpperCase = /[A-Z]/;
-    const hasLowerCase = /[a-z]/;
-    const hasSpecialChar = /[!@#$%^&*?/;"'|_.-]/;
-    const value = e.target.value;
-    dispatch(signupSlice.actions.passwordFunc(value));
-
-    //check if value is greater or equal to 8
-    const greenColor = "#00ff00";
-    if (value.length >= 8) {
-      listItems[0].style.color = greenColor;
-    } else {
-      listItems[0].style.color = "red";
-    }
-    //check if value contains upperCase
-    if (hasUpperCase.test(value)) {
-      listItems[1].style.color = greenColor;
-    } else {
-      listItems[1].style.color = "red";
-    }
-    //check if value contains LowerCase
-    if (hasLowerCase.test(value)) {
-      listItems[2].style.color = greenColor;
-    } else {
-      listItems[2].style.color = "red";
-    }
-    //check if value contains specialChar
-    if (hasSpecialChar.test(value)) {
-      listItems[3].style.color = greenColor;
-    } else {
-      listItems[3].style.color = "red";
-    }
+    signupMiddleware.handlePasswordChange(e, listItems, dispatch);
   }
 
   //change inputs border to red if there is an error
@@ -87,22 +56,8 @@ const Signup = () => {
     e.preventDefault();
     const passwordCondition = passwordConditionRef.current;
     const listItems = passwordCondition.querySelectorAll("li");
-    listItems.forEach((item) => {
-      item.style.color = "#fff";
-    });
 
-    console.log("submitted");
-
-    //if api is loading run the below
-    buttonRef.current.classList.add("disabled-button");
-    //else buttonref.current.classList.remove('disabled-button')
-
-    //clear all input value
-    dispatch(signupSlice.actions.resetValue());
-    //If user Authuorized redirect below
-    setTimeout(() => {
-      navigate("/dashboard");
-    }, 1000);
+    signupMiddleware.handleSubmit(e, listItems, buttonRef, dispatch, navigate);
   }
 
   //Password visibility

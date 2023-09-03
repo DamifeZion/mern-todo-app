@@ -2,13 +2,15 @@
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginSlice } from "../../features/slices/exportSlices";
+
 import { FaUserCircle, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
-
 import { dot } from "../../assets/exportAssets";
+
 // eslint-disable-next-line no-unused-vars
 import { ErrorMessage, Loading } from "../../components/exportComponents";
+import { loginMiddleWare } from "../../middleWares/exportMiddleWare";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -18,6 +20,7 @@ const Login = () => {
 
   // const {error, message} = useSelector(state => state.placeholder)
   const error = "Login error message from store";
+
   //Input value collection and management
   function handleEmailChange(e) {
     dispatch(loginSlice.actions.emailFunc(e.target.value));
@@ -26,38 +29,24 @@ const Login = () => {
   function handlePasswordChange(e) {
     dispatch(loginSlice.actions.passwordFunc(e.target.value));
   }
+  
+  function handlePasswordVisibility() {
+    dispatch(loginSlice.actions.passwordVisibleFunc());
+  }
 
   //change inputs border to red if there is an error
   function setBorderError() {
-    if (error) {
-      //uncomet the  below when done with api fetch
-      // return `border border-red-600`
-    }
+    //uncomet the  below when done with api fetch
+    // if (error) {
+    //   return `border border-red-600`
+    // }
   }
 
+  //used in loginMiddleWare
   const navigate = useNavigate();
   const buttonRef = useRef(null);
-
   function handleSubmit(e) {
-    e.preventDefault();
-    console.log("submitted");
-
-    //if api is loading run the below
-    buttonRef.current.classList.add("disabled-button");
-    //else buttonref.current.classList.remove('disabled-button')
-
-    //clear all input value
-    dispatch(loginSlice.actions.resetValue());
-    //If user Authuorized redirect below
-
-    setTimeout(() => {
-      navigate("/dashboard");
-    }, 1000);
-  }
-
-  //Password visibility
-  function handlePasswordVisibility() {
-    dispatch(loginSlice.actions.passwordVisibleFunc());
+    loginMiddleWare.handleSubmit(buttonRef, e, dispatch, navigate);
   }
 
   return (
