@@ -38,6 +38,7 @@ const Signup = () => {
   function handlePasswordChange(e) {
     const passwordCondition = passwordConditionRef.current;
     const listItems = passwordCondition.querySelectorAll("li");
+
     signupMiddleware.handlePasswordChange(e, listItems, dispatch);
   }
 
@@ -53,7 +54,6 @@ const Signup = () => {
   const buttonRef = useRef(null);
 
   function handleSubmit(e) {
-    e.preventDefault();
     const passwordCondition = passwordConditionRef.current;
     const listItems = passwordCondition.querySelectorAll("li");
 
