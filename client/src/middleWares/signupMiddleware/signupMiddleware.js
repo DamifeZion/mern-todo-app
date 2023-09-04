@@ -54,7 +54,7 @@ const signupMiddleware = {
     //If user Authuorized redirect below
     setTimeout(() => {
       dispatch(authSlice.actions.authed(true))
-      navigate('/dashboard')
+      navigate('/dashboard/myday')
     }, 1000);
   },
 };

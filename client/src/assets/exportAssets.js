@@ -14,6 +14,7 @@ import todoist from "./ic_todoist.svg";
 import loading from './loading.svg';
 
 import projectManagement from "./project-management.webp";
+import workWithTeam from './work-with-your-team.png'
 
 export {
   dot,
@@ -34,4 +35,7 @@ export {
   monday,
   asana,
   todoist,
+
+  //dashboard
+  workWithTeam
 };

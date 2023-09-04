@@ -10,7 +10,7 @@ import {
   Signup,
 
   //user must be authorized
-  Dashboard,
+  MyDay,
 } from "./pages/exportPages";
 
 import { RequireAuth } from "./middleWares/exportMiddleWare";
@@ -30,14 +30,16 @@ function App() {
 
             {/*User must be authorized to access the below*/}
             <Route
-              path="/dashboard"
+              path="/dashboard/myday"
               element={
                 <RequireAuth>
-                  <Dashboard />
+                  <MyDay />
                 </RequireAuth>
               }
             />
           </Routes>
+
+          
         </main>
       </BrowserRouter>
     </div>

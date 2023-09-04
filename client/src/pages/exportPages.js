@@ -6,4 +6,4 @@ export { default as Signup } from "./UnAuth/Signup";
 export { default as PasswordReset } from "./UnAuth/PasswordReset";
 
 //User needs to be authorized to access the below
-export { default as Dashboard } from "./Auth/Dashboard/Dashboard";
+export { default as MyDay } from "./Auth/Dashboard/MyDay";

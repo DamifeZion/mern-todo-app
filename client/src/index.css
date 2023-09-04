@@ -21,6 +21,12 @@
   /*Used to indicate errors or validation issues*/
   --error-color: #f44336;
 
+  /*Dashboard Colors*/
+  --dash-bg-color: #161616;
+  --dash-bg-color2: #424242;
+  --dash-txt-color1: #8e8e92;
+  --dash-txt-color2: #fff;
+
   --px: 3rem;
   --py: 1.5rem;
 
@@ -48,16 +54,35 @@ section.template {
   margin-inline: auto;
 }
 
+
 .overflow-y-scroll::-webkit-scrollbar,
+.overflow-y-auto::-webkit-scrollbar,
+.overflow-x-auto::-webkit-scrollbar,
 .overflow-x-scroll::-webkit-scrollbar {
   display: none;
+  scrollbar-width: none;
 }
+
+.overflow-y-scroll,
+.overflow-y-auto,
+.overflow-x-auto,
+.overflow-x-scroll {
+  scrollbar-width: none;
+}
+
 
 /*Disabled button for registrations*/
 .disabled-button {
   background-color: #f2f2f2;
   color: #999999;
 }
+
+/*Dashboard active link*/
+.active{
+  color: var(--dash-txt-color2);
+  background: var(--pri-color);
+}
+
 
 /*Footer*/
 footer li{
