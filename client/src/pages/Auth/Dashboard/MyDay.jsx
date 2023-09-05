@@ -1,38 +1,45 @@
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { sideNavSlice } from "../../../features/slices/exportSlices";
 import {
+  GearIcon,
   SideNav,
   AddTask,
   Suggestion,
 } from "../../../components/exportComponents";
 
 const MyDay = () => {
-  const [hideSideNav, setHideSideNav] = useState(true);
-
-  function handleHideSideNav() {
-    setHideSideNav((state) => !state);
+  const dispatch = useDispatch();
+  const { sideNavVisible } = useSelector((state) => state.sideNavSlice);
+  function handleMouseEnter() {
+    dispatch(sideNavSlice.actions.hideSideNav(true));
   }
+
 
   return (
     <div className=" bg-[--dash-bg-color]">
       <section className="flex w-full h-screen">
         <div
           className={`transition-translate ease-linear duration-200 ${
-            hideSideNav ? "w-[16%]" : "-translate-x-full"
-          } border border-green-600`}
+            sideNavVisible ? "w-2/12" : " invisible opacity-0 -translate-x-1/6"
+          }`}
         >
           <SideNav />
         </div>
 
+        <GearIcon
+          onMouseEnter={handleMouseEnter}
+          className={`absolute top-5 left-5 ${!sideNavVisible && "visible"}`}
+        />
+
         <div
-          onClick={handleHideSideNav}
           className={`${
-            hideSideNav ? "w-[60%]" : "w-[70%]"
-          } border border-red-600`}
+            sideNavVisible ? "w-7/12" : "w-8/12 px-28"
+          } border border-red-600 px-28`}
         >
           <AddTask />
         </div>
 
-        <div className={`w-[24%] border border-blue-600`}>
+        <div className={`w-3/12 border border-blue-600`}>
           <Suggestion />
         </div>
       </section>

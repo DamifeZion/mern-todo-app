@@ -1,4 +1,4 @@
-import dot from './dot.svg'
+import dot from "./dot.svg";
 import hero from "./hero-image.webp";
 import uberLogo from "./uberLogo.svg";
 import vanguardLogo from "./vanguardLogo.svg";
@@ -11,14 +11,14 @@ import clickup from "./ic_clickup.svg";
 import monday from "./ic_monday.svg";
 import asana from "./ic_asana.svg";
 import todoist from "./ic_todoist.svg";
-import loading from './loading.svg';
+import loading from "./loading.svg";
 
 import projectManagement from "./project-management.webp";
-import workWithTeam from './work-with-your-team.png'
+import workWithTeam from "./work-with-your-team.png";
+import googleMeet from "./google-meet.svg";
 
 export {
   dot,
-
   hero,
   uberLogo,
   vanguardLogo,
@@ -37,5 +37,6 @@ export {
   todoist,
 
   //dashboard
-  workWithTeam
+  workWithTeam,
+  googleMeet,
 };

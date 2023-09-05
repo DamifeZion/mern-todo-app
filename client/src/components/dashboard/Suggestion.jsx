@@ -2,7 +2,7 @@
 
 const Suggestion = () => {
   return (
-    <div>
+    <div className=" py-5">
       Suggestion
     </div>
   )
