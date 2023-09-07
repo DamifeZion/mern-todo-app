@@ -1,10 +1,10 @@
-import { useState } from "react";
-// import { userSlice } from "../../features/slices/exportSlices";
+import { useSelector, useDispatch } from "react-redux";
+import { addTaskSlice } from "../../../features/slices/exportSlices";
 import {
   GreetUser,
   RandomQuote,
   TimeAndDay,
-  // Input,
+  Input,
   TaskItems,
 } from "../../exportComponents";
 import {
@@ -15,7 +15,8 @@ import {
 
 const AddTask = () => {
   // eslint-disable-next-line no-unused-vars
-  const [apiData, setApiData] = useState(true);
+  const dispatch = useDispatch();
+  const { apiData } = useSelector((state) => state.addTaskSlice);
 
   return (
     <div className=" py-5 text-[--dash-txt-color1] flex flex-col h-screen">
@@ -95,7 +96,9 @@ const AddTask = () => {
         </div>
       </div>
 
-      {/* <Input className="mt-auto" /> */}
+      <div className="mt-auto">
+        <Input />
+      </div>
     </div>
   );
 };

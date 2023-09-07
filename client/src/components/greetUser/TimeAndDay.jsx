@@ -9,7 +9,7 @@ const TimeAndDay = () => {
     "Mon",
     "Tue",
     "Wed",
-    "Thurs",
+    "Thu",
     "Fri",
     "Sat",
   ];

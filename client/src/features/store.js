@@ -7,6 +7,9 @@ import {
   userSlice,
   sideNavSlice,
   dashboardSlice,
+  addTaskSlice,
+  inputCompSlice,
+  taskItemsSlice,
   addWorkoutSlice,
   fetchWorkoutsSlice,
 } from "./slices/exportSlices";
@@ -20,6 +23,10 @@ const store = configureStore({
     userSlice: userSlice.reducer,
     sideNavSlice: sideNavSlice.reducer,
     dashboardSlice: dashboardSlice.reducer,
+    addTaskSlice: addTaskSlice.reducer,
+    inputCompSlice: inputCompSlice.reducer,
+    taskItemsSlice: taskItemsSlice.reducer,
+    //
     addWorkoutSlice: addWorkoutSlice.reducer,
     fetchWorkoutsSlice: fetchWorkoutsSlice.reducer,
   },
