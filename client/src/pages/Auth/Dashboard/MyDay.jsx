@@ -4,7 +4,7 @@ import {
   GearIcon,
   SideNav,
   AddTask,
-  Suggestion,
+  TodoForm,
 } from "../../../components/exportComponents";
 
 const MyDay = () => {
@@ -34,13 +34,13 @@ const MyDay = () => {
         <div
           className={`${
             sideNavVisible ? "w-7/12" : "w-8/12 px-28"
-          } border border-red-600 px-28`}
+          } px-28`}
         >
           <AddTask />
         </div>
 
-        <div className={`w-3/12 border border-blue-600`}>
-          <Suggestion />
+        <div className={`w-3/12 pr-4`}>
+          <TodoForm />
         </div>
       </section>
     </div>

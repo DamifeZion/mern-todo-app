@@ -15,7 +15,9 @@ import loading from "./loading.svg";
 
 import projectManagement from "./project-management.webp";
 import workWithTeam from "./work-with-your-team.png";
-import googleMeet from "./google-meet.svg";
+import googleCalendar from "./google-calendar.svg";
+import outlookCalendar from "./outlook-calendar.svg";
+import halfCircle from "./half-circle.svg";
 
 export {
   dot,
@@ -38,5 +40,7 @@ export {
 
   //dashboard
   workWithTeam,
-  googleMeet,
+  googleCalendar,
+  outlookCalendar,
+  halfCircle,
 };

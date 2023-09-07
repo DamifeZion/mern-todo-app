@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useSelector, useDispatch } from "react-redux";
-import { userSlice, sideNavSlice } from "../../features/slices/exportSlices";
+// eslint-disable-next-line no-unused-vars
+import { userSlice, sideNavSlice } from "../../../features/slices/exportSlices";
 
-import SideNavChip from "./SideNavChip";
-import sideNavData from "../../data/sideNavData";
-import { workWithTeam } from "../../assets/exportAssets";
+import SideNavChip from "../../dashboard/sideNavChip/SideNavChip";
+import sideNavData from "../../../data/sideNavData";
+import { workWithTeam } from "../../../assets/exportAssets";
 
 import { BsPinAngle } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";

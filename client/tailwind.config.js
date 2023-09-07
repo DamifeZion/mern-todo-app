@@ -34,7 +34,7 @@ export default {
       boxShadow: {
         nav: "0px 0px 3px rgba(0, 0, 0, .3)",
         navBtns: "0px 0px 0px 0px rgba(0, 0, 0, 1)",
-        mobileHam: "rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;"
+        mobileHam: "rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;",
       },
 
       backgroundColor: {

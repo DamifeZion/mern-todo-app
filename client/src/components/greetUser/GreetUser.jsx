@@ -13,7 +13,7 @@ const GreetUser = () => {
     timeOfDay = "Morning";
   } else if (hours < 16) {
     timeOfDay = "Afternoon";
-  } else if (hours < 18) {
+  } else if (hours < 21) {
     timeOfDay = "Evening";
   } else {
     timeOfDay = "Night";
