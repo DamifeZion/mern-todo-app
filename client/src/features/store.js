@@ -10,8 +10,7 @@ import {
   addTaskSlice,
   inputCompSlice,
   taskItemsSlice,
-  addWorkoutSlice,
-  fetchWorkoutsSlice,
+  addTodoSlice,
 } from "./slices/exportSlices";
 
 const store = configureStore({
@@ -27,8 +26,7 @@ const store = configureStore({
     inputCompSlice: inputCompSlice.reducer,
     taskItemsSlice: taskItemsSlice.reducer,
     //
-    addWorkoutSlice: addWorkoutSlice.reducer,
-    fetchWorkoutsSlice: fetchWorkoutsSlice.reducer,
+    addTodoSlice: addTodoSlice.reducer,
   },
 });
 

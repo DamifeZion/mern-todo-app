@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
   firstName: "",
@@ -6,10 +6,13 @@ const initialState = {
   email: "",
   password: "",
   passwordVisible: false,
+  success: false,
+  error: "",
+  isLoading: false,
 };
 
 const signupSlice = createSlice({
-  name: "loginSlice",
+  name: "signupSlice",
 
   initialState,
 
@@ -17,7 +20,7 @@ const signupSlice = createSlice({
     firstNameFunc: (state, action) => {
       state.firstName = action.payload;
     },
-    
+
     lastNameFunc: (state, action) => {
       state.lastName = action.payload;
     },
@@ -32,6 +35,22 @@ const signupSlice = createSlice({
 
     passwordVisibleFunc: (state) => {
       state.passwordVisible = !state.passwordVisible;
+    },
+
+    setSuccess: (state, action) => {
+      state.success = action.payload;
+      state.isLoading = false;
+      state.error = "";
+    },
+
+    setError: (state, action) => {
+      state.error = action.payload;
+      state.isLoading = false;
+      state.success = false;
+    },
+
+    setIsLoading: (state, action) => {
+      state.isLoading = action.payload;
     },
 
     resetValue: (state) => {

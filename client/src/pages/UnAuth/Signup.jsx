@@ -1,7 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signupSlice } from "../../features/slices/exportSlices";
+import {
+  signupSlice,
+  authSlice,
+  userSlice,
+} from "../../features/slices/exportSlices";
 import { FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { AiOutlineUser, AiOutlineUserAdd } from "react-icons/ai";
@@ -14,12 +18,16 @@ import { signupMiddleware } from "../../middleWares/exportMiddleWare";
 
 const Signup = () => {
   const dispatch = useDispatch();
-  const { firstName, lastName, email, password, passwordVisible } = useSelector(
-    (state) => state.signupSlice
-  );
+  const {
+    firstName,
+    lastName,
+    email,
+    password,
+    error,
+    isLoading,
+    passwordVisible,
+  } = useSelector((state) => state.signupSlice);
 
-  // const {error, message} = useSelector(state => state.placeholder)
-  const error = "Signup error message from store";
   //Input value collection and management
   function handleFirstNameChange(e) {
     dispatch(signupSlice.actions.firstNameFunc(e.target.value));
@@ -30,7 +38,8 @@ const Signup = () => {
   }
 
   function handleEmailChange(e) {
-    dispatch(signupSlice.actions.emailFunc(e.target.value));
+    const value = e.target.value.toLowerCase();
+    dispatch(signupSlice.actions.emailFunc(value));
   }
 
   //Below collects the password value but also make sure the conditions are met
@@ -38,26 +47,27 @@ const Signup = () => {
   function handlePasswordChange(e) {
     const passwordCondition = passwordConditionRef.current;
     const listItems = passwordCondition.querySelectorAll("li");
-
     signupMiddleware.handlePasswordChange(e, listItems, dispatch);
-  }
-
-  //change inputs border to red if there is an error
-  function setBorderError() {
-    if (error) {
-      //uncomet the  below when done with api fetch
-      // return `border border-red-600`
-    }
   }
 
   const navigate = useNavigate();
   const buttonRef = useRef(null);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     const passwordCondition = passwordConditionRef.current;
     const listItems = passwordCondition.querySelectorAll("li");
 
-    signupMiddleware.handleSubmit(e, listItems, buttonRef, dispatch, navigate);
+    signupMiddleware.handleSubmit(
+      e,
+      listItems,
+      buttonRef,
+      dispatch,
+      navigate,
+      firstName,
+      lastName,
+      email,
+      password
+    );
   }
 
   //Password visibility
@@ -92,7 +102,7 @@ const Signup = () => {
         <div className=" flex flex-col gap-3 mt-4">
           <div className=" relative">
             <input
-              className={`bg-[#161616] pl-10 pr-4 py-3 outline-none border-[#fff] text-[#fff] rounded-3xl w-full whitespace-nowrap text-ellipsis ${setBorderError()}`}
+              className={`bg-[#161616] pl-10 pr-4 py-3 outline-none border-[#fff] text-[#fff] rounded-3xl w-full whitespace-nowrap text-ellipsis `}
               onChange={handleFirstNameChange}
               type="text"
               value={firstName}
@@ -106,7 +116,7 @@ const Signup = () => {
 
           <div className=" relative">
             <input
-              className={`bg-[#161616] pl-10 pr-4 py-3 outline-none border-[#fff] text-[#fff] rounded-3xl w-full whitespace-nowrap text-ellipsis ${setBorderError()}`}
+              className={`bg-[#161616] pl-10 pr-4 py-3 outline-none border-[#fff] text-[#fff] rounded-3xl w-full whitespace-nowrap text-ellipsis `}
               onChange={handleLastNameChange}
               type="text"
               value={lastName}
@@ -120,7 +130,7 @@ const Signup = () => {
 
           <div className=" relative">
             <input
-              className={`bg-[#161616] pl-10 pr-4 py-3 outline-none border-[#fff] text-[#fff] rounded-3xl w-full whitespace-nowrap text-ellipsis ${setBorderError()}`}
+              className={`bg-[#161616] pl-10 pr-4 py-3 outline-none border-[#fff] text-[#fff] rounded-3xl w-full whitespace-nowrap text-ellipsis `}
               onChange={handleEmailChange}
               type="email"
               value={email}
@@ -138,7 +148,7 @@ const Signup = () => {
             </i>
 
             <input
-              className={`bg-[#161616] pl-10 pr-4 py-3 outline-none border-[#fff] text-[#fff] rounded-3xl w-full whitespace-nowrap text-ellipsis ${setBorderError()}`}
+              className={`bg-[#161616] pl-10 pr-4 py-3 outline-none border-[#fff] text-[#fff] rounded-3xl w-full whitespace-nowrap text-ellipsis `}
               onChange={handlePasswordChange}
               type={passwordVisible ? "text" : "password"}
               value={password}
@@ -219,12 +229,13 @@ const Signup = () => {
         </small>
       </form>
 
-      {/*Bellow is for when make API request loading*/}
-      {/* {isLoading ? (
-        <div className="fixed w-full h-screen top-0 right-1/2 translate-x-1/2">
-          <Loading />
-        </div>
-      ) : null} */}
+      <div
+        className={`${
+          isLoading ? "visible opacity-100" : "invisible opacity-0"
+        } fixed w-full h-screen top-0 right-1/2 translate-x-1/2 ease`}
+      >
+        <Loading />
+      </div>
     </div>
   );
 };

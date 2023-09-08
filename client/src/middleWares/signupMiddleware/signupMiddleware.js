@@ -1,4 +1,8 @@
-import { signupSlice, authSlice } from "../../features/slices/exportSlices";
+import {
+  signupSlice,
+  userSlice,
+  authSlice,
+} from "../../features/slices/exportSlices";
 
 const signupMiddleware = {
   handlePasswordChange: (e, listItems, dispatch) => {
@@ -36,26 +40,64 @@ const signupMiddleware = {
     dispatch(signupSlice.actions.passwordFunc(value));
   },
 
-  handleSubmit: (e, listItems, buttonRef, dispatch, navigate) => {
-    e.preventDefault()
+  handleSubmit: async (
+    e,
+    listItems,
+    buttonRef,
+    dispatch,
+    navigate,
+    firstName,
+    lastName,
+    email,
+    password
+  ) => {
+    e.preventDefault();
 
     listItems.forEach((item) => {
       item.style.color = "#fff";
     });
 
-    console.log("submitted");
-
-    //if api is loading run the below
     buttonRef.current.classList.add("disabled-button");
-    //else buttonref.current.classList.remove('disabled-button')
+    try {
+      dispatch(signupSlice.actions.setIsLoading(true));
+      const url = "http://localhost:5000/api/user/register";
+      const userData = { firstName, lastName, email, password };
+      const res = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(userData),
+        headers: { "Content-Type": "application/json" },
+      });
 
-    //clear all input value
-    dispatch(signupSlice.actions.resetValue());
-    //If user Authuorized redirect below
-    setTimeout(() => {
-      dispatch(authSlice.actions.authed(true))
-      navigate('/dashboard/myday')
-    }, 1000);
+      const json = await res.json();
+
+      if (!res.ok) {
+        dispatch(signupSlice.actions.setError(json.error));
+        buttonRef.current.classList.remove("disabled-button");
+        console.log(json.error);
+      }
+
+      if (res.ok) {
+        dispatch(signupSlice.actions.resetValue());
+        dispatch(userSlice.actions.setUserName(json.firstName));
+        dispatch(userSlice.actions.setToken(json.token));
+        dispatch(signupSlice.actions.setSuccess(true))
+
+        const userData = {
+          userName: json.firstName,
+          token: json.token,
+        };
+
+        localStorage.setItem("userData", JSON.stringify(userData));
+        //update auth
+        dispatch(authSlice.actions.authed(true));
+        navigate("/dashboard/myday");
+      }
+    } catch (error) {
+      if (error) {
+        dispatch(signupSlice.actions.setError(error.message));
+        console.log(error.message);
+      }
+    } 
   },
 };
 
