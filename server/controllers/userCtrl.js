@@ -6,7 +6,7 @@ const userModel = require("../models/userModel");
 
 const createToken = (_id) => {
   const secret = process.env.SECRET;
-  return jwt.sign({ _id }, secret, { expiresIn: "10s" });
+  return jwt.sign({ _id }, secret, { expiresIn: "3d" });
 };
 
 const signupCtrl = async (req, res) => {
@@ -62,7 +62,7 @@ const loginCtrl = async (req, res) => {
       return res.status(404).json({ error: "Invalid login credentials" });
     }
 
-    const matchPassword = bcrypt.compare(password, user.password);
+    const matchPassword = await bcrypt.compare(password, user.password);
 
     if (!matchPassword) {
       return res.status(400).json({ error: "Invalid login credentials" });

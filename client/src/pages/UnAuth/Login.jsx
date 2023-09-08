@@ -14,12 +14,9 @@ import { loginMiddleWare } from "../../middleWares/exportMiddleWare";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const { email, password, passwordVisible } = useSelector(
+  const { email, password, isLoading, error, passwordVisible } = useSelector(
     (state) => state.loginSlice
   );
-
-  // const {error, message} = useSelector(state => state.placeholder)
-  const error = "Login error message from store";
 
   //Input value collection and management
   function handleEmailChange(e) {
@@ -29,24 +26,17 @@ const Login = () => {
   function handlePasswordChange(e) {
     dispatch(loginSlice.actions.passwordFunc(e.target.value));
   }
-  
+
   function handlePasswordVisibility() {
     dispatch(loginSlice.actions.passwordVisibleFunc());
-  }
-
-  //change inputs border to red if there is an error
-  function setBorderError() {
-    //uncomet the  below when done with api fetch
-    // if (error) {
-    //   return `border border-red-600`
-    // }
   }
 
   //used in loginMiddleWare
   const navigate = useNavigate();
   const buttonRef = useRef(null);
   function handleSubmit(e) {
-    loginMiddleWare.handleSubmit(buttonRef, e, dispatch, navigate);
+    const formData = { email, password };
+    loginMiddleWare.handleSubmit(buttonRef, e, dispatch, navigate, formData);
   }
 
   return (
@@ -73,14 +63,14 @@ const Login = () => {
           <FaUserCircle />
         </span>
 
-        <small className=" mt-6 w-fit  flex">
-          {error && <ErrorMessage message={error} />}
+        <small className={`${error && 'scale-100'} scale-0 duration-300 mt-6 w-fit  flex`}>
+          <ErrorMessage message={error} />
         </small>
 
         <div className=" flex flex-col gap-3 mt-4">
           <div className=" relative">
             <input
-              className={`bg-[#161616] pl-10 pr-4 py-3 outline-none border-[#fff] text-[#fff] rounded-3xl w-full whitespace-nowrap text-ellipsis ${setBorderError()}`}
+              className={`bg-[#161616] pl-10 pr-4 py-3 outline-none border-[#fff] text-[#fff] rounded-3xl w-full whitespace-nowrap text-ellipsis `}
               onChange={handleEmailChange}
               type="email"
               value={email}
@@ -98,7 +88,7 @@ const Login = () => {
             </i>
 
             <input
-              className={`bg-[#161616] pl-10 pr-4 py-3 outline-none border-[#fff] text-[#fff] rounded-3xl w-full whitespace-nowrap text-ellipsis ${setBorderError()}`}
+              className={`bg-[#161616] pl-10 pr-4 py-3 outline-none border-[#fff] text-[#fff] rounded-3xl w-full whitespace-nowrap text-ellipsis `}
               onChange={handlePasswordChange}
               type={passwordVisible ? "text" : "password"}
               value={password}
@@ -167,12 +157,13 @@ const Login = () => {
         </small>
       </form>
 
-      {/*Bellow is for when make API request loading*/}
-      {/* {isLoading ? (
-        <div className="fixed w-full h-screen top-0 right-1/2 translate-x-1/2">
-          <Loading />
-        </div>
-      ) : null} */}
+      <div
+        className={`${
+          isLoading ? "opacity-100 visible" : "opacity-0 invisible"
+        } duration-300 fixed w-full h-screen top-0 right-1/2 translate-x-1/2 `}
+      >
+        <Loading />
+      </div>
     </div>
   );
 };

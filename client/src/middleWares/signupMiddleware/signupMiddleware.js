@@ -80,14 +80,9 @@ const signupMiddleware = {
         dispatch(signupSlice.actions.resetValue());
         dispatch(userSlice.actions.setUserName(json.firstName));
         dispatch(userSlice.actions.setToken(json.token));
-        dispatch(signupSlice.actions.setSuccess(true))
+        dispatch(signupSlice.actions.setSuccess(true));
 
-        const userData = {
-          userName: json.firstName,
-          token: json.token,
-        };
-
-        localStorage.setItem("userData", JSON.stringify(userData));
+        localStorage.setItem("user", JSON.stringify(json));
         //update auth
         dispatch(authSlice.actions.authed(true));
         navigate("/dashboard/myday");
@@ -97,7 +92,7 @@ const signupMiddleware = {
         dispatch(signupSlice.actions.setError(error.message));
         console.log(error.message);
       }
-    } 
+    }
   },
 };
 
