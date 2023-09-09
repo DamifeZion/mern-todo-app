@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { dot } from "../../assets/exportAssets";
 
 const GreetUser = () => {
-  const { userName } = useSelector((state) => state.userSlice);
+  const { user } = useSelector((state) => state.userSlice);
 
   const date = new Date();
   const hours = date.getHours();
@@ -21,7 +21,7 @@ const GreetUser = () => {
 
   return (
     <div className=" flex items-center gap-[.12rem]">
-      Good {timeOfDay}, {userName}
+      Good {timeOfDay}, {user.firstName}
       <img src={dot} alt="dot" className=" w-[10px] h-[10px] mt-[.78rem]" />
     </div>
   );

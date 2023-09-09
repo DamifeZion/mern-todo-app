@@ -1,4 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 
 //Component Imports
 import {
@@ -13,9 +19,13 @@ import {
   MyDay,
 } from "./pages/exportPages";
 
+import { useLayoutEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { RequireAuth } from "./middleWares/exportMiddleWare";
+import { userSlice } from "./features/slices/exportSlices";
 
 function App() {
+
   return (
     <div>
       <BrowserRouter>
@@ -38,8 +48,6 @@ function App() {
               }
             />
           </Routes>
-
-          
         </main>
       </BrowserRouter>
     </div>

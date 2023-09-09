@@ -1,17 +1,16 @@
 import {
   loginSlice,
-  authSlice,
   userSlice,
 } from "../../features/slices/exportSlices";
 
 const loginMiddleWare = {
   handleSubmit: async (buttonRef, e, dispatch, navigate, formData) => {
     e.preventDefault();
-    console.log("submitted");
 
     function disableButton() {
       buttonRef.current.classList.add("disabled-button");
     }
+
     function enableButton() {
       buttonRef.current.classList.remove("disabled-button");
     }
@@ -36,12 +35,12 @@ const loginMiddleWare = {
 
       if (res.ok) {
         dispatch(loginSlice.actions.setSuccess(true));
-        localStorage.setItem("user", JSON.stringify(json));
-        dispatch(userSlice.actions.setUserName(json.firstName));
-        dispatch(userSlice.actions.setToken(json.token));
-        enableButton();
         dispatch(loginSlice.actions.resetValue());
-        dispatch(authSlice.actions.authed(true));
+        
+        localStorage.setItem("user", JSON.stringify(json));
+        dispatch(userSlice.actions.setUser(json));
+
+        enableButton();
         navigate("/dashboard/myday");
       }
     } catch (error) {

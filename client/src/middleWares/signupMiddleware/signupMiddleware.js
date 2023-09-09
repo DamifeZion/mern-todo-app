@@ -1,7 +1,6 @@
 import {
   signupSlice,
   userSlice,
-  authSlice,
 } from "../../features/slices/exportSlices";
 
 const signupMiddleware = {
@@ -61,7 +60,7 @@ const signupMiddleware = {
       buttonRef.current.classList.add("disabled-button");
     }
     function enableButton() {
-      buttonRef.current.classList.add("disabled-button");
+      buttonRef.current.classList.remove("disabled-button");
     }
 
     disableButton();
@@ -86,14 +85,12 @@ const signupMiddleware = {
 
       if (res.ok) {
         dispatch(signupSlice.actions.resetValue());
-        dispatch(userSlice.actions.setUserName(json.firstName));
-        dispatch(userSlice.actions.setToken(json.token));
         dispatch(signupSlice.actions.setSuccess(true));
-
+        
         localStorage.setItem("user", JSON.stringify(json));
+        dispatch(userSlice.actions.setUser(json));
 
         enableButton();
-        dispatch(authSlice.actions.authed(true));
         navigate("/dashboard/myday");
       }
     } catch (error) {

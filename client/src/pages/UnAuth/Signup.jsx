@@ -1,11 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  signupSlice,
-  authSlice,
-  userSlice,
-} from "../../features/slices/exportSlices";
+import { signupSlice } from "../../features/slices/exportSlices";
 import { FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { AiOutlineUser, AiOutlineUserAdd } from "react-icons/ai";

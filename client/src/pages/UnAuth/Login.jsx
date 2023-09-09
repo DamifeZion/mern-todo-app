@@ -73,6 +73,7 @@ const Login = () => {
         <div className=" flex flex-col gap-3 mt-4">
           <div className=" relative">
             <input
+              id="email"
               className={`bg-[#161616] pl-10 pr-4 py-3 outline-none border-[#fff] text-[#fff] rounded-3xl w-full whitespace-nowrap text-ellipsis `}
               onChange={handleEmailChange}
               type="email"
@@ -91,6 +92,7 @@ const Login = () => {
             </i>
 
             <input
+              id="password"
               className={`bg-[#161616] pl-10 pr-4 py-3 outline-none border-[#fff] text-[#fff] rounded-3xl w-full whitespace-nowrap text-ellipsis `}
               onChange={handlePasswordChange}
               type={passwordVisible ? "text" : "password"}

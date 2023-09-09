@@ -17,7 +17,7 @@ import { IoClose } from "react-icons/io5";
 
 const SideNav = () => {
   const dispatch = useDispatch();
-  const { userName } = useSelector((state) => state.userSlice);
+  const { user } = useSelector((state) => state.userSlice);
   const { sideNavImgVisible } = useSelector((state) => state.sideNavSlice);
 
   function hideImage() {
@@ -36,7 +36,7 @@ const SideNav = () => {
       <header className="sticky top-0 flex flex-col group">
         <nav className="px-5 relative flex items-center gap-2 cursor-pointer">
           <h1 className="ml-14 text-[--dash-txt-color2] leading-tight font-medium">
-            {userName} <br />
+            {user.firstName} <br />
             <span className="text-[--dash-txt-color1] font-normal text-[.9rem]">
               Free Plan
             </span>
