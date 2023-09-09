@@ -1,34 +1,34 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-//Component Imports
+// Component Imports
 import {
-  //user not need be authorized
   Home,
   About,
   Login,
   PasswordReset,
   Signup,
-
-  //user must be authorized
   MyDay,
 } from "./pages/exportPages";
 
-import { useLayoutEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RequireAuth } from "./middleWares/exportMiddleWare";
 import { userSlice } from "./features/slices/exportSlices";
 
 function App() {
+  const dispatch = useDispatch();
+  
+  //Check on first mount if user is logged in from local storage
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      dispatch(userSlice.actions.setUser(user));
+    }
+  }, [dispatch]);
 
   return (
     <div>
-      <BrowserRouter>
+      <Router>
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -38,7 +38,7 @@ function App() {
             <Route path="/password/reset" element={<PasswordReset />} />
             <Route path="*" element={"404 Page Not Found"} />
 
-            {/*User must be authorized to access the below*/}
+            {/* User must be authorized to access the below */}
             <Route
               path="/dashboard/myday"
               element={
@@ -49,7 +49,7 @@ function App() {
             />
           </Routes>
         </main>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }

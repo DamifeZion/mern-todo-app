@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useRef } from "react";
+import { useRef, useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginSlice } from "../../features/slices/exportSlices";
 
@@ -12,7 +12,18 @@ import { ErrorMessage, Loading } from "../../components/exportComponents";
 import { loginMiddleWare } from "../../middleWares/exportMiddleWare";
 
 const Login = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  //If user exists from the localStorage component redirect
+  const { user } = useSelector((state) => state.userSlice);
+
+  useLayoutEffect(() => {
+    if (user) {
+      navigate("/dashboard/myday");
+    }
+  }, [user, navigate]);
+
   const { email, password, isLoading, error, passwordVisible } = useSelector(
     (state) => state.loginSlice
   );
@@ -31,7 +42,6 @@ const Login = () => {
   }
 
   //used in loginMiddleWare
-  const navigate = useNavigate();
   const buttonRef = useRef(null);
   function handleSubmit(e) {
     const formData = { email, password };

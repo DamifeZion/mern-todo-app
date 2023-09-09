@@ -1,23 +1,20 @@
 /* eslint-disable react/prop-types */
-import { useLayoutEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { userSlice } from "../../features/slices/exportSlices";
+import { Navigate, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const RequireAuth = ({ children }) => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const location = useLocation();
   const { user } = useSelector((state) => state.userSlice);
 
-  useLayoutEffect(() => {
-    if (!user) {
-      navigate("/login");
-    } else {
-      dispatch(userSlice.actions.setUser(user));
-    }
-  }, [dispatch, user, navigate]);
-
-  return user ? children : null;
+  return user ? (
+    children
+  ) : (
+    <Navigate 
+      to={"/login"} 
+      replace 
+      state={{ path: location }}>
+    </Navigate>
+  );
 };
 
 export default RequireAuth;
