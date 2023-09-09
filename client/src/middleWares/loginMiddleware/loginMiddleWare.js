@@ -40,6 +40,7 @@ const loginMiddleWare = {
         dispatch(userSlice.actions.setUserName(json.firstName));
         dispatch(userSlice.actions.setToken(json.token));
         enableButton();
+        dispatch(loginSlice.actions.resetValue());
         dispatch(authSlice.actions.authed(true));
         navigate("/dashboard/myday");
       }
