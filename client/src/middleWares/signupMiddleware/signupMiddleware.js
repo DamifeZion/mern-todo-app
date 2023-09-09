@@ -57,7 +57,15 @@ const signupMiddleware = {
       item.style.color = "#fff";
     });
 
-    buttonRef.current.classList.add("disabled-button");
+    function disableButton() {
+      buttonRef.current.classList.add("disabled-button");
+    }
+    function enableButton() {
+      buttonRef.current.classList.add("disabled-button");
+    }
+
+    disableButton();
+
     try {
       dispatch(signupSlice.actions.setIsLoading(true));
       const url = "http://localhost:5000/api/user/register";
@@ -72,7 +80,7 @@ const signupMiddleware = {
 
       if (!res.ok) {
         dispatch(signupSlice.actions.setError(json.error));
-        buttonRef.current.classList.remove("disabled-button");
+        enableButton();
         console.log(json.error);
       }
 
@@ -84,13 +92,14 @@ const signupMiddleware = {
 
         localStorage.setItem("user", JSON.stringify(json));
 
+        enableButton();
         dispatch(authSlice.actions.authed(true));
         navigate("/dashboard/myday");
       }
     } catch (error) {
       if (error) {
+        enableButton();
         dispatch(signupSlice.actions.setError(error.message));
-        console.log(error.message);
       }
     }
   },

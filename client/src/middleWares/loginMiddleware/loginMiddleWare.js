@@ -13,7 +13,7 @@ const loginMiddleWare = {
       buttonRef.current.classList.add("disabled-button");
     }
     function enableButton() {
-      buttonRef.current.classList.add("disabled-button");
+      buttonRef.current.classList.remove("disabled-button");
     }
 
     try {
