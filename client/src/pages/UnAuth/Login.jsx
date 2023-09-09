@@ -8,7 +8,6 @@ import { MdEmail } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { dot } from "../../assets/exportAssets";
 
-// eslint-disable-next-line no-unused-vars
 import { ErrorMessage, Loading } from "../../components/exportComponents";
 import { loginMiddleWare } from "../../middleWares/exportMiddleWare";
 
@@ -18,9 +17,9 @@ const Login = () => {
     (state) => state.loginSlice
   );
 
-  //Input value collection and management
   function handleEmailChange(e) {
-    dispatch(loginSlice.actions.emailFunc(e.target.value));
+    const value = e.target.value.toLowerCase();
+    dispatch(loginSlice.actions.emailFunc(value));
   }
 
   function handlePasswordChange(e) {
@@ -63,7 +62,11 @@ const Login = () => {
           <FaUserCircle />
         </span>
 
-        <small className={`${error && 'scale-100'} scale-0 duration-300 mt-6 w-fit  flex`}>
+        <small
+          className={`${
+            error && "scale-100"
+          } scale-0 duration-300 mt-6 w-fit  flex`}
+        >
           <ErrorMessage message={error} />
         </small>
 

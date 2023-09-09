@@ -83,7 +83,7 @@ const signupMiddleware = {
         dispatch(signupSlice.actions.setSuccess(true));
 
         localStorage.setItem("user", JSON.stringify(json));
-        //update auth
+
         dispatch(authSlice.actions.authed(true));
         navigate("/dashboard/myday");
       }

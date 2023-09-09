@@ -1,4 +1,3 @@
-import { json } from "react-router-dom";
 import {
   loginSlice,
   authSlice,
@@ -10,10 +9,15 @@ const loginMiddleWare = {
     e.preventDefault();
     console.log("submitted");
 
-    //else buttonref.current.classList.remove('disabled-button')
+    function disableButton() {
+      buttonRef.current.classList.add("disabled-button");
+    }
+    function enableButton() {
+      buttonRef.current.classList.add("disabled-button");
+    }
 
     try {
-      buttonRef.current.classList.add("disabled-button");
+      disableButton();
       dispatch(loginSlice.actions.setIsLoading(true));
       const url = "http://localhost:5000/api/user/login";
       const res = await fetch(url, {
@@ -25,8 +29,9 @@ const loginMiddleWare = {
       const json = await res.json();
 
       if (!res.ok) {
+        enableButton();
         dispatch(loginSlice.actions.setError(json.error));
-        buttonRef.current.classList.remove("disabled-button")
+        buttonRef.current.classList.remove("disabled-button");
       }
 
       if (res.ok) {
@@ -34,11 +39,13 @@ const loginMiddleWare = {
         localStorage.setItem("user", JSON.stringify(json));
         dispatch(userSlice.actions.setUserName(json.firstName));
         dispatch(userSlice.actions.setToken(json.token));
+        enableButton();
         dispatch(authSlice.actions.authed(true));
         navigate("/dashboard/myday");
       }
     } catch (error) {
       dispatch(loginSlice.actions.setError(error.message));
+      enableButton();
     }
   },
 };
