@@ -10,8 +10,8 @@ import {
   inputCompSlice,
   taskItemsSlice,
   addTodoSlice,
+  suggestionSlice,
 } from "./slices/exportSlices";
-
 
 const store = configureStore({
   reducer: {
@@ -26,6 +26,7 @@ const store = configureStore({
     taskItemsSlice: taskItemsSlice.reducer,
     //
     addTodoSlice: addTodoSlice.reducer,
+    suggestionSlice: suggestionSlice.reducer,
   },
 });
 

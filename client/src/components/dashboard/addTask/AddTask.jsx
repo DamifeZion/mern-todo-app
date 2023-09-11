@@ -1,5 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
-import { addTaskSlice } from "../../../features/slices/exportSlices";
+import { useSelector } from "react-redux";
 import {
   GreetUser,
   RandomQuote,
@@ -14,8 +13,6 @@ import {
 } from "../../../assets/exportAssets";
 
 const AddTask = () => {
-  // eslint-disable-next-line no-unused-vars
-  const dispatch = useDispatch();
   const { apiData } = useSelector((state) => state.addTaskSlice);
 
   return (

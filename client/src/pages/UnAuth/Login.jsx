@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useRef, useLayoutEffect } from "react";
+import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginSlice } from "../../features/slices/exportSlices";
 
@@ -15,15 +15,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  //If user exists from the localStorage component redirect
-  const { user } = useSelector((state) => state.userSlice);
-
-  useLayoutEffect(() => {
-    if (user) {
-      navigate("/dashboard/myday");
-    }
-  }, [user, navigate]);
-
+  //grabbing values from loginSlice
   const { email, password, isLoading, error, passwordVisible } = useSelector(
     (state) => state.loginSlice
   );

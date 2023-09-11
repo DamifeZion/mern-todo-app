@@ -16,3 +16,5 @@ export {
   fetchTodosSlice,
   reFetchAllTodos,
 } from "./11_fetchAllTodos/fetchAllTodos";
+
+export {default as suggestionSlice} from './12_suggestionSlice/suggestionSlice'

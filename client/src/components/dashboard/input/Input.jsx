@@ -19,12 +19,6 @@ const Input = ({ className }) => {
     dispatch(inputCompSlice.actions.setTitleValue(value));
   }
 
-  function handleKeyUp(event) {
-    if (event.key === "Enter") {
-      addTaskTitleMiddleware(titleValue);
-    }
-  }
-
   function handleSubmit() {
     addTaskTitleMiddleware(titleValue);
   }
@@ -33,7 +27,6 @@ const Input = ({ className }) => {
     <div
       id="input"
       onClick={handleInputClick}
-      onKeyUp={handleKeyUp}
       className={`relative text-[.9rem] ${className}`}
     >
       <span className="absolute top-1/2 -translate-y-1/2 left-[.7rem] text-sm cursor-text">

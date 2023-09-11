@@ -4,7 +4,8 @@ import {
   GearIcon,
   SideNav,
   AddTask,
-  TodoForm,
+  Suggestion,
+  SuggestionQuickTools,
 } from "../../../components/exportComponents";
 
 const MyDay = () => {
@@ -13,7 +14,6 @@ const MyDay = () => {
   function handleMouseEnter() {
     dispatch(sideNavSlice.actions.hideSideNav(true));
   }
-
 
   return (
     <div className=" bg-[--dash-bg-color]">
@@ -31,16 +31,16 @@ const MyDay = () => {
           className={`absolute top-5 left-5 ${!sideNavVisible && "visible"}`}
         />
 
-        <div
-          className={`${
-            sideNavVisible ? "w-7/12" : "w-8/12 px-28"
-          } px-28`}
-        >
+        <div className={`${sideNavVisible ? "w-7/12" : "w-8/12 px-28"} px-28`}>
           <AddTask />
         </div>
 
-        <div className={`w-3/12 pr-4`}>
-          <TodoForm />
+        <div className={`relative w-3/12 my-4 pr-4 border border-red-600`}>
+          <Suggestion />
+
+          <div className=" absolute right-4 top-0">
+            <SuggestionQuickTools />
+          </div>
         </div>
       </section>
     </div>

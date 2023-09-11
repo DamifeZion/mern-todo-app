@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useLayoutEffect } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 // Component Imports
 import {
@@ -11,45 +12,39 @@ import {
   MyDay,
 } from "./pages/exportPages";
 
-import { useSelector, useDispatch } from "react-redux";
 import { RequireAuth } from "./middleWares/exportMiddleWare";
-import { userSlice } from "./features/slices/exportSlices";
+import { authenticateUser } from "./middleWares/exportMiddleWare";
 
 function App() {
   const dispatch = useDispatch();
-  
-  //Check on first mount if user is logged in from local storage
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      dispatch(userSlice.actions.setUser(user));
-    }
-  }, [dispatch]);
+  const navigate = useNavigate();
+  const { handleUserExistence, handleTokenExpiration } = authenticateUser;
+
+  useLayoutEffect(() => {
+    handleUserExistence(dispatch, navigate);
+    handleTokenExpiration();
+  }, [handleUserExistence, dispatch, navigate, handleTokenExpiration]);
 
   return (
     <div>
-      <Router>
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/password/reset" element={<PasswordReset />} />
-            <Route path="*" element={"404 Page Not Found"} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/password/reset" element={<PasswordReset />} />
+        <Route path="*" element={"404 Page Not Found"} />
 
-            {/* User must be authorized to access the below */}
-            <Route
-              path="/dashboard/myday"
-              element={
-                <RequireAuth>
-                  <MyDay />
-                </RequireAuth>
-              }
-            />
-          </Routes>
-        </main>
-      </Router>
+        {/* User must be authorized to access the below */}
+        <Route
+          path="/dashboard/myday"
+          element={
+            <RequireAuth>
+              <MyDay />
+            </RequireAuth>
+          }
+        />
+      </Routes>
     </div>
   );
 }
