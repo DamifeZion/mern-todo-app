@@ -2,7 +2,7 @@
   "name": "server",
   "author": "Olaleye-Martins Damife Zion",
   "scripts": {
-    "start": "start index",
+    "start": "node index",
     "dev": "nodemon index",
     "build": "npm i"
   },
