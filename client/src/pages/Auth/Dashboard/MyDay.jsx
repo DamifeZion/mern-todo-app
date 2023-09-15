@@ -25,7 +25,7 @@ const MyDay = () => {
   }
 
   function handleHideSuggestion() {
-    dispatch(suggestionSlice.actions.setHideSuggestion());
+    dispatch(suggestionSlice.actions.setHideSuggestion())
   }
 
   return (
