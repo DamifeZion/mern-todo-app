@@ -13,13 +13,13 @@ const userRoute = require("./routes/userRoute");
 const todoRoute = require("./routes/todoRoute");
 
 //Routing
-app.use("/user", userRoute);
+app.use("/api/user", userRoute);
 
 //Middleware Import
 const requireAuthorization = require("./middleware/requireAuthorization");
 
 app.use(requireAuthorization);
-app.use("/todo", todoRoute);
+app.use("/api/todo", todoRoute);
 
 //Connect to DB
 const Port = process.env.PORT || 6000;
