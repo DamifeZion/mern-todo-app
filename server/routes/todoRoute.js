@@ -1,5 +1,11 @@
 const express = require("express");
+const app = express()
 const router = express.Router();
+
+//Middleware Import
+const requireAuthorization = require("../middleware/requireAuthorization");
+
+app.use(requireAuthorization);
 
 //Controller Import
 const todoCtrl = require("../controllers/todoCtrl");

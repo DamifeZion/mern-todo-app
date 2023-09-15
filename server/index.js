@@ -14,11 +14,6 @@ const todoRoute = require("./routes/todoRoute");
 
 //Routing
 app.use("/user", userRoute);
-
-//Middleware Import
-const requireAuthorization = require("./middleware/requireAuthorization");
-
-app.use(requireAuthorization);
 app.use("/todo", todoRoute);
 
 //Connect to DB
