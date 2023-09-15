@@ -16,14 +16,13 @@
 
   /*Used for borders, background accents, and subtle elements*/
   --neutral-color: #e2e2e2;
-  --neutral-color2: #424242;
 
   /*Used to indicate errors or validation issues*/
   --error-color: #f44336;
 
   /*Dashboard Colors*/
   --dash-bg-color: #161616;
-  --dash-bg-color2: #424242;
+  --dash-bg-color2: hwb(0 26% 74%);
   --dash-txt-color1: #8e8e92;
   --dash-txt-color2: #fff;
 

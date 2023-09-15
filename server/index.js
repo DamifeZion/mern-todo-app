@@ -6,14 +6,20 @@ const mongoose = require("mongoose");
 const app = express();
 app.use(express.json());
 
-
 app.use(cors());
 
 //Import Route
 const userRoute = require("./routes/userRoute");
+const todoRoute = require("./routes/todoRoutes");
 
 //Routing
 app.use("/api/user", userRoute);
+
+//Middleware Import
+const requireAuthorization = require("./middlewares/requireAuthorization");
+
+app.use(requireAuthorization);
+app.use("/api/todo", todoRoute);
 
 //Connect to DB
 const Port = process.env.PORT || 6000;

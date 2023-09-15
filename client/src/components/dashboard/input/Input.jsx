@@ -19,8 +19,8 @@ const Input = ({ className }) => {
     dispatch(inputCompSlice.actions.setTitleValue(value));
   }
 
-  function handleSubmit() {
-    addTaskTitleMiddleware(titleValue);
+  function handleSubmit(e) {
+    addTaskTitleMiddleware(e, titleValue, dispatch);
   }
 
   return (
@@ -33,7 +33,7 @@ const Input = ({ className }) => {
         <AiOutlinePlus strokeWidth={15} />
       </span>
 
-      <div>
+      <form onSubmit={handleSubmit}>
         <input
           onChange={handleInputChange}
           onMouseOver={handleInputClick}
@@ -43,7 +43,7 @@ const Input = ({ className }) => {
           placeholder="Enter task title"
           ref={inputRef}
         />
-      </div>
+      </form>
 
       <AiOutlineArrowUp
         onClick={handleSubmit}

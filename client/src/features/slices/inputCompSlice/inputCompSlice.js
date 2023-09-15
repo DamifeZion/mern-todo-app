@@ -4,12 +4,16 @@ const inputCompSlice = createSlice({
   name: "inputCompSlice",
 
   initialState: {
-    titleValue: "",
+    titleValue: "titleValue",
   },
 
   reducers: {
     setTitleValue: (state, action) => {
       state.titleValue = action.payload;
+    },
+
+    resetTitleValue: (state) => {
+      state.titleValue = "";
     },
   },
 });

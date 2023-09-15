@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   GreetUser,
   RandomQuote,
@@ -11,9 +11,15 @@ import {
   outlookCalendar,
   halfCircle,
 } from "../../../assets/exportAssets";
+import { comingSoonSlice } from "../../../features/slices/exportSlices";
 
 const AddTask = () => {
+  const dispatch = useDispatch()
   const { apiData } = useSelector((state) => state.addTaskSlice);
+
+  function showComingSoon(){
+    dispatch(comingSoonSlice.actions.showComingSoon())
+  }
 
   return (
     <div className=" py-5 text-[--dash-txt-color1] flex flex-col h-screen">
@@ -42,7 +48,8 @@ const AddTask = () => {
                 />
 
                 <a
-                  href="#"
+                  onClick={showComingSoon}
+                  href={null}
                   className=" text-[.8rem] text-[--pri-color] cursor-pointer hover:underline"
                 >
                   Connect Google Calendar
@@ -57,7 +64,8 @@ const AddTask = () => {
                 />
 
                 <a
-                  href="#"
+                  onClick={showComingSoon}
+                  href={null}
                   className=" text-[.8rem] text-[--pri-color] cursor-pointer hover:underline"
                 >
                   Connect Outlook Calendar

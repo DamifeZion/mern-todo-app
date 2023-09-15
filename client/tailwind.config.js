@@ -2,7 +2,6 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-
     extend: {
       screens: {
         sm: "350px",
@@ -14,8 +13,8 @@ export default {
         800: "800px",
         900: "900px",
         1000: "1000px",
-        "lg": "1025px",
-        "xl": '1200px',
+        lg: "1025px",
+        xl: "1200px",
         "1xl": "1300px",
         "2xl": "1400px",
       },
@@ -33,8 +32,13 @@ export default {
 
       boxShadow: {
         nav: "0px 0px 3px rgba(0, 0, 0, .3)",
+
         navBtns: "0px 0px 0px 0px rgba(0, 0, 0, 1)",
-        mobileHam: "rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;",
+
+        mobileHam:
+          "rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;",
+
+        options: "0px 10px 10px 5px rgba(0, 0, 0, .2)",
       },
 
       backgroundColor: {

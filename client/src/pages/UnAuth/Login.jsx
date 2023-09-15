@@ -95,7 +95,7 @@ const Login = () => {
 
             <input
               id="password"
-              className={`bg-[#161616] pl-10 pr-4 py-3 outline-none border-[#fff] text-[#fff] rounded-3xl w-full whitespace-nowrap text-ellipsis `}
+              className={`bg-[#161616] pl-10 pr-10 py-3 outline-none border-[#fff] text-[#fff] rounded-3xl w-full`}
               onChange={handlePasswordChange}
               type={passwordVisible ? "text" : "password"}
               value={password}

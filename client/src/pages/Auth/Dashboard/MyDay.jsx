@@ -1,18 +1,31 @@
 import { useSelector, useDispatch } from "react-redux";
-import { sideNavSlice } from "../../../features/slices/exportSlices";
+import {
+  sideNavSlice,
+  suggestionSlice,
+} from "../../../features/slices/exportSlices";
 import {
   GearIcon,
   SideNav,
   AddTask,
   Suggestion,
   SuggestionQuickTools,
+  EditTask,
 } from "../../../components/exportComponents";
+import { BiArrowToRight } from "react-icons/bi";
+import { PiLightbulbFilament } from "react-icons/pi";
 
 const MyDay = () => {
   const dispatch = useDispatch();
   const { sideNavVisible } = useSelector((state) => state.sideNavSlice);
+  const { hideSuggestion } = useSelector((state) => state.suggestionSlice);
+  const { hideEditTask } = useSelector((state) => state.editTaskSlice);
+
   function handleMouseEnter() {
     dispatch(sideNavSlice.actions.hideSideNav(true));
+  }
+
+  function handleHideSuggestion() {
+    dispatch(suggestionSlice.actions.setHideSuggestion());
   }
 
   return (
@@ -31,16 +44,43 @@ const MyDay = () => {
           className={`absolute top-5 left-5 ${!sideNavVisible && "visible"}`}
         />
 
-        <div className={`${sideNavVisible ? "w-7/12" : "w-8/12 px-28"} px-28`}>
+        <div
+          className={`${sideNavVisible && "translate-x-"} ml-20 w-5/12 ${
+            hideSuggestion && "translate-x-[10%]"
+          } ${sideNavVisible && hideSuggestion && ""}`}
+        >
           <AddTask />
         </div>
 
-        <div className={`relative w-3/12 my-4 pr-4 border border-red-600`}>
+        <div
+          className={`relative w-3/12 my-8 pr-8 ml-auto ${
+            hideSuggestion && "translate-x-full opacity-0 w-0"
+          }`}
+        >
           <Suggestion />
+        </div>
 
-          <div className=" absolute right-4 top-0">
-            <SuggestionQuickTools />
-          </div>
+        <div className=" absolute right-8 top-8">
+          <SuggestionQuickTools />
+        </div>
+
+        <div
+          onClick={handleHideSuggestion}
+          className=" cursor-pointer absolute bg-[--dash-bg-color] top-[49%] text-[--dash-txt-color1] hover:text-[--pri-color] right-4 py-7 px-4 text-[1.7rem] rounded-tl-xl rounded-bl-xl"
+        >
+          {!hideSuggestion ? (
+            <BiArrowToRight />
+          ) : (
+            <PiLightbulbFilament strokeWidth={2} />
+          )}
+        </div>
+
+        <div className={`absolute top-0 left-0 w-full h-full ease duration-200 ${hideEditTask ? 'visible opacity-100' : 'invisible opacity-0'}`}>
+          <EditTask />
+        </div>
+
+        <div>
+          
         </div>
       </section>
     </div>

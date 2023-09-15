@@ -2,7 +2,7 @@ import jwtDecode from "jwt-decode";
 import { userSlice } from "../../features/slices/exportSlices";
 
 export const authenticateUser = {
-  handleUserExistence: (dispatch, navigate) => {
+  requireUser: (dispatch) => {
     const user = JSON.parse(localStorage.getItem("user"));
 
     if (!user) {
@@ -10,7 +10,6 @@ export const authenticateUser = {
     }
 
     dispatch(userSlice.actions.setUser(user));
-    navigate("/dashboard/myday");
   },
 
   handleTokenExpiration: () => {
@@ -20,12 +19,13 @@ export const authenticateUser = {
       return;
     }
 
-    //token key from the local storage
     const decodedToken = jwtDecode(user.token);
-    const currentTime = Math.ceil(Date.now() / 1000);
+    const currentTime = Math.floor(Date.now() / 1000);
+
+    console.log(decodedToken, currentTime);
 
     function resetUser() {
-      if (currentTime > decodedToken.exp) {
+      if (decodedToken.exp <= currentTime) {
         localStorage.removeItem("user");
       }
     }

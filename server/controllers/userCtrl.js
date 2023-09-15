@@ -6,7 +6,7 @@ const userModel = require("../models/userModel");
 
 const createToken = (_id) => {
   const secret = process.env.SECRET;
-  return jwt.sign({ _id }, secret, { expiresIn: "1d" });
+  return jwt.sign({ _id }, secret, { expiresIn: "3d" });
 };
 
 const signupCtrl = async (req, res) => {

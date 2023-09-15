@@ -7,6 +7,11 @@ const suggestionSlice = createSlice({
     filter: "",
     isLoading: false,
     success: false,
+
+    //conditional rendering
+    removeCard: false,
+    addSuggestion: false,
+    hideSuggestion:false
   },
 
   reducers: {
@@ -25,6 +30,18 @@ const suggestionSlice = createSlice({
     success: (state, action) => {
       state.success = action.payload;
     },
+
+    setRemoveCard: (state) => {
+      state.removeCard = !state.removeCard;
+    },
+
+    setAddSuggestion: (state) => {
+      state.addSuggestion = !state.addSuggestion;
+    },
+
+    setHideSuggestion: (state) => {
+      state.hideSuggestion = !state.hideSuggestion
+    }
   },
 });
 

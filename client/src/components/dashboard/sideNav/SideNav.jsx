@@ -1,7 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useSelector, useDispatch } from "react-redux";
 // eslint-disable-next-line no-unused-vars
-import { userSlice, sideNavSlice } from "../../../features/slices/exportSlices";
+import {
+  userSlice,
+  sideNavSlice,
+  comingSoonSlice,
+} from "../../../features/slices/exportSlices";
 
 import SideNavChip from "../../dashboard/sideNavChip/SideNavChip";
 import sideNavData from "../../../data/sideNavData";
@@ -28,6 +32,15 @@ const SideNav = () => {
     dispatch(sideNavSlice.actions.hideSideNav(false));
   }
 
+  function logUserOut(){
+    dispatch(userSlice.actions.logout())
+    console.log('logOut')
+  }
+
+  function showComingSoon() {
+    dispatch(comingSoonSlice.actions.showComingSoon());
+  }
+
   //Data from sideNavData
   const { mainMenu, myLists, tags } = sideNavData;
 
@@ -35,7 +48,7 @@ const SideNav = () => {
     <div className="relative flex flex-col h-full w-full py-5 text-[--dash-txt-color1]">
       <header className="sticky top-0 flex flex-col group">
         <nav className="px-5 relative flex items-center gap-2 cursor-pointer">
-          <h1 className="ml-14 text-[--dash-txt-color2] leading-tight font-medium">
+          <h1 className="ml-14 text-[--dash-txt-color2] leading-tight font-medium overflow-hidden text-ellipsis w-7/12">
             {user.firstName} <br />
             <span className="text-[--dash-txt-color1] font-normal text-[.9rem]">
               Free Plan
@@ -50,8 +63,11 @@ const SideNav = () => {
           </span>
         </nav>
 
-        <button className="mx-5 mt-3 p-[.45rem] rounded-3xl border border-[--pri-color] font-medium text-[--pri-color] hover:bg-[--pri-color] hover:text-[--dash-txt-color2]">
-          Go Premium
+        <button
+          onClick={logUserOut}
+          className="mx-5 mt-3 p-[.45rem] rounded-3xl border border-[#fb001f] font-medium text-[#fb001f] hover:bg-[#fb001f] hover:text-[--dash-txt-color2]"
+        >
+          Log out
         </button>
       </header>
 
@@ -78,7 +94,10 @@ const SideNav = () => {
           <h1 className="relative mt-3 px-5 py-2 cursor-pointer flex items-center gap-2 font-semibold text-[1.1rem] text-[--dash-txt-color2] hover:bg-[--neutral-color2]">
             My lists
             <MdOutlineLock className="text-[--dash-txt-color1]" />
-            <AiOutlinePlus className=" absolute top-1/2 -translate-y-1/2 right-4 hover:text-[--pri-color] text-[--dash-txt-color1]" />
+            <AiOutlinePlus
+              onClick={showComingSoon}
+              className=" absolute top-1/2 -translate-y-1/2 right-4 hover:text-[--pri-color] text-[--dash-txt-color1]"
+            />
           </h1>
 
           <div className="flex flex-col">
@@ -100,8 +119,15 @@ const SideNav = () => {
             Tags
             <BsTags className=" text-[--dash-txt-color1]" />
             <div className="absolute top-1/2 -translate-y-1/2 right-4 flex items-center gap-3">
-              <MdOutlineEdit className=" text-[--dash-txt-color1] hover:text-[--pri-color]" />
-              <AiOutlinePlus className=" text-[--dash-txt-color1] hover:text-[--pri-color]" />
+              <MdOutlineEdit
+                onClick={showComingSoon}
+                className=" text-[--dash-txt-color1] hover:text-[--pri-color]"
+              />
+
+              <AiOutlinePlus
+                onClick={showComingSoon}
+                className=" text-[--dash-txt-color1] hover:text-[--pri-color]"
+              />
             </div>
           </h1>
 
@@ -135,7 +161,10 @@ const SideNav = () => {
 
           <img src={workWithTeam} alt="Work with team" className="mt-1" />
 
-          <button className="mt-2 py-[.6rem] w-full bg-[--pri-color] rounded-3xl text-[.9rem] font-bold text-[#fff] hover:text-[--pri-color]">
+          <button
+            onClick={showComingSoon}
+            className="mt-2 py-[.6rem] w-full bg-[--pri-color] rounded-3xl text-[.9rem] font-bold text-[#fff] hover:text-[--pri-color]"
+          >
             Coming Soon
           </button>
         </div>

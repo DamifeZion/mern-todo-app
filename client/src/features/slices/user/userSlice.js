@@ -15,6 +15,12 @@ const userSlice = createSlice({
     },
 
     logout: (state) => {
+      const confirm = window.confirm("Are you sure you want to log out?");
+
+      if (!confirm) {
+        return;
+      }
+
       state.user = null;
       localStorage.removeItem("user");
     },

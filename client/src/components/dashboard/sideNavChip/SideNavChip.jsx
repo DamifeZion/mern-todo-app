@@ -12,7 +12,7 @@ const SideNavChip = ({
   return (
     <NavLink
       to={to}
-      className={`px-5 py-[.65rem] text- flex items-center cursor-pointer group hover:bg-[--neutral-color2] gap-2 text-[.9rem] font-medium`}
+      className={`px-5 py-[.65rem] text- flex items-center cursor-pointer group hover:bg-[--dash-bg-color2] gap-2 text-[.9rem] font-medium`}
     >
       {Icon && <Icon className={`text-[1.5rem] group-hover:scale-110 `} />}
 

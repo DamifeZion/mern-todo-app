@@ -7,10 +7,11 @@ import {
   sideNavSlice,
   dashboardSlice,
   addTaskSlice,
-  inputCompSlice,
   taskItemsSlice,
-  addTodoSlice,
   suggestionSlice,
+  editTaskSlice,
+  comingSoonSlice,
+  inputCompSlice,
 } from "./slices/exportSlices";
 
 const store = configureStore({
@@ -22,11 +23,12 @@ const store = configureStore({
     sideNavSlice: sideNavSlice.reducer,
     dashboardSlice: dashboardSlice.reducer,
     addTaskSlice: addTaskSlice.reducer,
-    inputCompSlice: inputCompSlice.reducer,
     taskItemsSlice: taskItemsSlice.reducer,
     //
-    addTodoSlice: addTodoSlice.reducer,
     suggestionSlice: suggestionSlice.reducer,
+    editTaskSlice: editTaskSlice.reducer,
+    comingSoonSlice: comingSoonSlice.reducer,
+    inputCompSlice: inputCompSlice.reducer,
   },
 });
 

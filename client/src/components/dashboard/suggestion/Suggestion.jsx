@@ -4,6 +4,7 @@ import { RiMenu4Line } from "react-icons/ri";
 import { LuLoader2 } from "react-icons/lu";
 import { useSelector, useDispatch } from "react-redux";
 import { suggestionSlice } from "../../../features/slices/exportSlices";
+import { SuggestionCard } from "../../exportComponents";
 
 const Suggestion = () => {
   const dispatch = useDispatch();
@@ -11,7 +12,6 @@ const Suggestion = () => {
     (state) => state.suggestionSlice
   );
 
-  console.log(isLoading);
   const handleChange = (e) => {
     const value = e.target.value;
     dispatch(suggestionSlice.actions.handleFilter(value));
@@ -45,7 +45,7 @@ const Suggestion = () => {
   }
 
   return (
-    <div className="w-full flex flex-col text-[.9rem]">
+    <div className="w-full flex flex-col text-[.9rem] h-full">
       <div className="pl-2 flex items-center text-[#e4e4e4] text-[.95rem]">
         <PiLightbulbFilament strokeWidth={2} className="text-[1.6rem]" />
         <h1 className=" ml-2">Suggestions</h1>
@@ -59,17 +59,18 @@ const Suggestion = () => {
           placeholder="Filter"
         />
 
-        <span
-          className="pl-2 pr-3 pb-3 absolute cursor-pointer bottom-0 -right-1 text-[#e4e4e4] text-[1.3rem] hover:text-[--pri-color]"
-        >
+        <span className="pl-2 pr-3 pb-3 absolute bottom-0 -right-1 text-[#e4e4e4] text-[1.3rem] hover:text-[--pri-color]">
           {changeFilterIcon()}
         </span>
       </div>
 
-      <div id="suggestion-chip"
-        className=" flex flex-col items-center"
-      >
-
+      <div id="suggestion-chip" className="mt-4 flex flex-col gap-4 overflow-y-scroll h-3/6">
+        <SuggestionCard />
+        <SuggestionCard />
+        <SuggestionCard />
+        <SuggestionCard />
+        <SuggestionCard />
+        <SuggestionCard />
       </div>
     </div>
   );
