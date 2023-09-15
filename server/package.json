@@ -3,7 +3,8 @@
   "author": "Olaleye-Martins Damife Zion",
   "scripts": {
     "start": "start index",
-    "dev": "nodemon index"
+    "dev": "nodemon index",
+    "build": "npm i"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
