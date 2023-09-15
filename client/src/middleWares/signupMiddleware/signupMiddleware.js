@@ -67,7 +67,7 @@ const signupMiddleware = {
 
     try {
       dispatch(signupSlice.actions.setIsLoading(true));
-      const url = "https://taskflow-crud.onrender.com/user/register";
+      const url = "https://taskflow-crud.onrender.com/api/user/register";
       const userData = { firstName, lastName, email, password };
       const res = await fetch(url, {
         method: "POST",
