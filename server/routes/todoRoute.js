@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router();
 
-app.use(requireAuthorization);
 
 //Controller Import
 const todoCtrl = require("../controllers/todoCtrl");
