@@ -1,14 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { inputCompSlice } from "../../../features/slices/exportSlices";
-import { addTaskTitleMiddleware } from "../../../middleWares/exportMiddleWare";
+import { taskItemsSlice } from "../../../features/slices/exportSlices";
 import { AiOutlinePlus, AiOutlineArrowUp } from "react-icons/ai";
 
 const Input = ({ className }) => {
   const inputRef = useRef(null);
   const dispatch = useDispatch();
-  const { titleValue } = useSelector((state) => state.inputCompSlice);
+  const { title } = useSelector((state) => state.taskItemsSlice);
 
   function handleInputClick() {
     inputRef.current.focus();
@@ -16,11 +15,12 @@ const Input = ({ className }) => {
 
   function handleInputChange(event) {
     const value = event.target.value;
-    dispatch(inputCompSlice.actions.setTitleValue(value));
+    dispatch(taskItemsSlice.actions.setTitleValue(value));
   }
 
-  function handleSubmit(e) {
-    addTaskTitleMiddleware(e, titleValue, dispatch);
+  function handleSubmit() {
+    //run post api here
+    dispatch(taskItemsSlice.actions.setTitle(title))
   }
 
   return (

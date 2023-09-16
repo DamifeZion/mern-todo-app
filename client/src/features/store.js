@@ -11,7 +11,6 @@ import {
   suggestionSlice,
   editTaskSlice,
   comingSoonSlice,
-  inputCompSlice,
 } from "./slices/exportSlices";
 
 const store = configureStore({
@@ -28,7 +27,6 @@ const store = configureStore({
     suggestionSlice: suggestionSlice.reducer,
     editTaskSlice: editTaskSlice.reducer,
     comingSoonSlice: comingSoonSlice.reducer,
-    inputCompSlice: inputCompSlice.reducer,
   },
 });
 

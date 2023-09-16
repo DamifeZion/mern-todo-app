@@ -17,4 +17,3 @@ export { default as suggestionSlice } from "./suggestionSlice/suggestionSlice";
 
 export { default as editTaskSlice } from "./editTask/editTaskSlice";
 export {default as comingSoonSlice} from './comingSoon/comingSoon'
-export {default as inputCompSlice} from './inputCompSlice/inputCompSlice'
