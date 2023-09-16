@@ -37,7 +37,7 @@ const Input = ({ className }) => {
         <input
           onChange={handleInputChange}
           onMouseOver={handleInputClick}
-          value={titleValue}
+          value={title}
           className="w-full py-[.6rem] px-10 rounded-md outline-none border-2 border-[--dash-bg-color2] focus:border-[--pri-color] bg-[--dash-bg-color] caret-[--pri-color] focus:text-[#e4e4e4] hover:border-[--pri-color]"
           type="text"
           placeholder="Enter task title"
