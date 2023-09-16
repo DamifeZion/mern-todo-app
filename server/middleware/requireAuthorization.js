@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const todoModel = require("../models/todoModel");
+const userModel = require("../models/todoModel");
 
 const requireAuthorization = async (req, res, next) => {
   const { authorization } = req.headers;
@@ -13,9 +13,9 @@ const requireAuthorization = async (req, res, next) => {
 
     const token = authorization.split(" ")[1];
 
-    const { _id } = await jwt.verify(token, process.env.SECRET);
+    const { _id } = jwt.verify(token, process.env.SECRET);
 
-    req.user = todoModel.findOne({ _id }).select("_id");
+    req.user = await userModel.findOne({ _id }).select("_id");
 
     next();
   } catch (error) {
