@@ -1,10 +1,8 @@
 const express = require('express')
 const router = express.Router();
 
-//Middleware Import && use
+//Middleware Import
 const requireAuthorization = require("../middleware/requireAuthorization");
-
-router.use(requireAuthorization);
 
 //Controller Import
 const todoCtrl = require("../controllers/todoCtrl");
@@ -16,6 +14,9 @@ const {
   editTodo, 
   deleteTodo 
 } = todoCtrl;
+
+//Require auth for all workout routes 
+router.use(requireAuthorization);
 
 router.get("/", getAllTodo);
 
