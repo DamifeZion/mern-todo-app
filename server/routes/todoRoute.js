@@ -16,7 +16,7 @@ const {
 } = todoCtrl;
 
 //Require auth for all workout routes 
-router.use(requireAuthorization);
+// router.use(requireAuthorization)
 
 router.get("/", getAllTodo);
 
