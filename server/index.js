@@ -4,9 +4,15 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 
 const app = express();
-app.use(express.json());
 
+app.use(express.json());
 app.use(cors());
+app.get("/", (req, res) => {
+  res.setHeader(
+    "Access-control-Allow-Credentials", "true"
+  );
+  res.send("API is running...");
+});
 
 //Import Route
 const userRoute = require("./routes/userRoute");
@@ -32,4 +38,3 @@ mongoose
   .catch((err) => {
     if (err) throw err;
   });
-
