@@ -2,7 +2,7 @@ import { addTaskSlice } from "../../features/slices/exportSlices";
 
 export const postTodoItem = async (title, dispatch) => {
   const apiConfig = {
-    url: "http://localhost:9000/api/todo",
+    url: "https://taskflow-crud.onrender.com/api/todo",
     user: JSON.parse(localStorage.getItem("user")),
   };
 
