@@ -11,7 +11,7 @@ export { default as taskItemsSlice } from "./taskItemsSlice/taskItemsSlice";
 export {
   fetchTodosSlice,
   reFetchAllTodos,
-} from "./fetchAllTodos/fetchAllTodos";
+} from "./fetchAllTodos/fetchTodosSlice";
 
 export { default as suggestionSlice } from "./suggestionSlice/suggestionSlice";
 

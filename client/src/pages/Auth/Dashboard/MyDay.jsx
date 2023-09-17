@@ -19,6 +19,12 @@ import { PiLightbulbFilament } from "react-icons/pi";
 const MyDay = () => {
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    reFetchAllTodos(dispatch)
+  }, [dispatch])
+
+  const {todoData} = useSelector(state => state.fetchTodosSlice)
+
   const { sideNavVisible } = useSelector((state) => state.sideNavSlice);
   const { hideSuggestion } = useSelector((state) => state.suggestionSlice);
   const { hideEditTask } = useSelector((state) => state.editTaskSlice);
