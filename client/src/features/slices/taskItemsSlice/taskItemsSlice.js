@@ -9,6 +9,7 @@ const taskItemsSlice = createSlice({
     subTitle: "Sub-Title",
     notes: "Notes",
     file: "",
+    selectedTaskId: "",
   },
 
   reducers: {
@@ -32,12 +33,17 @@ const taskItemsSlice = createSlice({
       state.file = action.payload;
     },
 
+    setSelectedTaskId: (state, action) => {
+      state.selectedTaskId = action.payload;
+    },
+
     resetValues: (state) => {
       state.checked = false;
       state.title = "";
       state.subTitle = "";
       state.notes = "";
       state.file = "";
+      state.selectedTaskId = "";
     },
   },
 });
