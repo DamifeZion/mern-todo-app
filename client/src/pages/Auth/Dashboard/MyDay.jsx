@@ -31,7 +31,7 @@ const MyDay = () => {
 
   const { todoData } = useSelector((state) => state.fetchTodosSlice);
 
-  console.table(todoData[0].user_id, todoData[1].user_id, todoData[2].user_id, todoData[3].user_id, todoData[4].user_id, todoData[5].user_id, todoData[6].user_id)
+  // console.table(todoData[0].user_id, todoData[1].user_id, todoData[2].user_id, todoData[3].user_id, todoData[4].user_id, todoData[5].user_id, todoData[6].user_id)
 
   const { sideNavVisible } = useSelector((state) => state.sideNavSlice);
   const { hideSuggestion } = useSelector((state) => state.suggestionSlice);
