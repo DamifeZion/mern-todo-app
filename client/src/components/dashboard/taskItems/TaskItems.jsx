@@ -1,21 +1,26 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import {
   taskItemsSlice,
   editTaskSlice,
-  fetchTodosSlice,
 } from "../../../features/slices/exportSlices";
+import { deleteTodoItem } from "../../../middleWares/exportMiddleWare";
+import { IsLoading } from "../../exportComponents";
 import { useSelector, useDispatch } from "react-redux";
 import { AiFillEdit, AiOutlinePlus } from "react-icons/ai";
 import { BsCheck } from "react-icons/bs";
 
 const TaskItems = ({ className, todoData }) => {
   const dispatch = useDispatch();
-  const { completed } = useSelector((state) => state.taskItemsSlice);
+  const { isLoading, selectedTaskId } = useSelector(
+    (state) => state.taskItemsSlice
+  );
 
-  const { hideEditTask } = useSelector((state) => state.editTaskSlice);
+  const [checked, setChecked] = useState(false);
 
-  const handleCheck = () => {
-    dispatch(taskItemsSlice.actions.setCompleted(completed));
+  const handleCheck = async () => {
+    setChecked((state) => !state);
+    dispatch(taskItemsSlice.actions.setCompleted(checked));
   };
 
   const showEditTask = () => {
@@ -23,13 +28,23 @@ const TaskItems = ({ className, todoData }) => {
     dispatch(editTaskSlice.actions.toggleVisibility());
   };
 
+  const handleDeleteTodoItem = () => {
+    deleteTodoItem(dispatch, todoData._id);
+  };
+
   return (
     <div
       id="taskItems"
-      className={`${className} relative bg-[#252525] p-4 flex items-center gap-4 rounded-md group cursor-pointer} ${
+      className={`${className} relative bg-[#252525] p-4 flex items-center gap-4 rounded-md group cursor-pointer overflow-hidden} ${
         todoData.completed ? "bg-[#202020]" : "bg-[#252525]"
       }`}
     >
+      {isLoading && todoData._id === selectedTaskId && (
+        <div className=" absolute top-0 left-0 w-full h-full overflow-hidden z-30 rounded-md">
+          <IsLoading />
+        </div>
+      )}
+
       <div
         id="crossCheckedTodos"
         className={`${
@@ -72,7 +87,10 @@ const TaskItems = ({ className, todoData }) => {
           strokeWidth={20}
         />
 
-        <AiOutlinePlus className=" text-[1.4rem] rotate-45 cursor-pointer hover:text-[--dash-txt-color2]" />
+        <AiOutlinePlus
+          onClick={handleDeleteTodoItem}
+          className=" text-[1.4rem] rotate-45 cursor-pointer hover:text-[--dash-txt-color2]"
+        />
       </div>
     </div>
   );

@@ -18,6 +18,7 @@ import workWithTeam from "./work-with-your-team.png";
 import googleCalendar from "./google-calendar.svg";
 import outlookCalendar from "./outlook-calendar.svg";
 import halfCircle from "./half-circle.svg";
+import dashboardLoader from './dashboardLoader.svg'
 
 export {
   dot,
@@ -43,4 +44,5 @@ export {
   googleCalendar,
   outlookCalendar,
   halfCircle,
+  dashboardLoader
 };

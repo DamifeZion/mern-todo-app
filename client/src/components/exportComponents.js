@@ -14,6 +14,7 @@ export { default as Suggestion } from "./dashboard/suggestion/Suggestion";
 export { default as SuggestionQuickTools } from "./dashboard/suggestionQuickTools/SuggestionQuickTools";
 export { default as SuggestionCard } from "./dashboard/suggestionCard/SuggestionCard";
 export { default as TaskItems } from "./dashboard/taskItems/TaskItems";
+export {default as IsLoading} from './dashboard/isLoading/IsLoading'
 
 //Atoms
 export { default as GearIcon } from "./gearIcon/GearIcon";

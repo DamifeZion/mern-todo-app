@@ -12,6 +12,8 @@ const Suggestion = () => {
     (state) => state.suggestionSlice
   );
 
+  const {todoData} = useSelector(state => state.fetchTodosSlice)
+
   const handleChange = (e) => {
     const value = e.target.value;
     dispatch(suggestionSlice.actions.handleFilter(value));
@@ -65,7 +67,9 @@ const Suggestion = () => {
       </div>
 
       <div id="suggestion-chip" className="mt-4 flex flex-col gap-4 overflow-y-scroll h-3/6">
-        <SuggestionCard />
+        {todoData && todoData.map(todo => (
+          <SuggestionCard key={todo._id} todoData={todo}/>
+        ))}
       </div>
     </div>
   );

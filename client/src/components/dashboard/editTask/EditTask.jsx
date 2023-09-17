@@ -18,15 +18,15 @@ const EditTask = ({ todoData }) => {
     useSelector((state) => state.taskItemsSlice);
 
   useEffect(() => {
-    dispatch(taskItemsSlice.actions.setCompleted(todoData.completed));
+    dispatch(taskItemsSlice.actions.setCompleted(todoData.completed || false));
 
-    dispatch(taskItemsSlice.actions.setTitle(todoData.title));
+    dispatch(taskItemsSlice.actions.setTitle(todoData.title || ''));
 
-    dispatch(taskItemsSlice.actions.setSubTitle(todoData.subTitle));
+    dispatch(taskItemsSlice.actions.setSubTitle(todoData.subTitle || ''));
 
-    dispatch(taskItemsSlice.actions.setNotes(todoData.notes));
+    dispatch(taskItemsSlice.actions.setNotes(todoData.notes || ''));
 
-    dispatch(taskItemsSlice.actions.setFile(todoData.file));
+    dispatch(taskItemsSlice.actions.setFile(todoData.file || ''));
   }, [dispatch]);
 
   const showComingSoon = () => {
@@ -35,21 +35,18 @@ const EditTask = ({ todoData }) => {
 
   const handleTitleChange = (e) => {
     dispatch(taskItemsSlice.actions.setTitle(e.target.value));
-    console.log(title);
   };
 
   const handleCheck = () => {
-    dispatch(taskItemsSlice.actions.setCompleted());
+    dispatch(taskItemsSlice.actions.setCompleted(!completed));
   };
 
   const handleSubTitleChange = (e) => {
     dispatch(taskItemsSlice.actions.setSubTitle(e.target.value));
-    console.log(subTitle);
   };
 
   const handleNotesChange = (e) => {
     dispatch(taskItemsSlice.actions.setNotes(e.target.value));
-    console.log(notes);
   };
 
   //Below hides and submit the edit task because for better speed as performing post request every time a user types will reduce speed due to slow server I use

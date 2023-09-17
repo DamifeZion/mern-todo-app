@@ -4,12 +4,33 @@ const addTaskSlice = createSlice({
   name: "addTaskSlice",
 
   initialState: {
-    apiData: true,
+    todoTitle: "",
+    success: false,
+    error: false,
+    isLoading: false,
   },
 
   reducers: {
-    setApiData: (state) => {
-      state.apiData = !state.apiData;
+    setAddTitle: (state, action) => {
+      state.todoTitle = action.payload;
+    },
+
+    setSuccess: (state) => {
+      state.todoTitle = "";
+      state.success = true;
+      state.isLoading = false;
+      state.error = false;
+    },
+
+    setError: (state, action) => {
+      state.error = action.payload;
+      state.todoTitle = ''
+      state.success = false;
+      state.isLoading = false;
+    },
+
+    setIsLoading: (state) => {
+      state.isLoading = true;
     },
   },
 });

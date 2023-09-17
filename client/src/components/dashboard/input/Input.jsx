@@ -1,13 +1,17 @@
 /* eslint-disable react/prop-types */
 import { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { taskItemsSlice } from "../../../features/slices/exportSlices";
+import { addTaskSlice } from "../../../features/slices/exportSlices";
+import { postTodoItem } from "../../../middleWares/exportMiddleWare";
 import { AiOutlinePlus, AiOutlineArrowUp } from "react-icons/ai";
 
 const Input = ({ className }) => {
   const inputRef = useRef(null);
   const dispatch = useDispatch();
-  const { title } = useSelector((state) => state.taskItemsSlice);
+  const { todoTitle, error, isLoading } = useSelector(
+    (state) => state.addTaskSlice
+  );
+
 
   function handleInputClick() {
     inputRef.current.focus();
@@ -15,12 +19,14 @@ const Input = ({ className }) => {
 
   function handleInputChange(event) {
     const value = event.target.value;
-    dispatch(taskItemsSlice.actions.setTitleValue(value));
+    dispatch(addTaskSlice.actions.setAddTitle(value));
   }
 
-  function handleSubmit() {
-    //run post api here
-    dispatch(taskItemsSlice.actions.setTitle(title))
+  function handleSubmit(e) {
+    e.preventDefault();
+    //the below is because the backend receives only title and i dont want it to contradict with the title from edit task slice
+    const title = todoTitle
+    postTodoItem(title, dispatch);
   }
 
   return (
@@ -37,7 +43,7 @@ const Input = ({ className }) => {
         <input
           onChange={handleInputChange}
           onMouseOver={handleInputClick}
-          value={title}
+          value={todoTitle || ''}
           className="w-full py-[.6rem] px-10 rounded-md outline-none border-2 border-[--dash-bg-color2] focus:border-[--pri-color] bg-[--dash-bg-color] caret-[--pri-color] focus:text-[#e4e4e4] hover:border-[--pri-color]"
           type="text"
           placeholder="Enter task title"

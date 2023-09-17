@@ -15,15 +15,20 @@ import {
 } from "../../../components/exportComponents";
 import { BiArrowToRight } from "react-icons/bi";
 import { PiLightbulbFilament } from "react-icons/pi";
+import { deleteTodoItem } from "../../../middleWares/exportMiddleWare";
 
 const MyDay = () => {
   const dispatch = useDispatch();
-  const { completed, title, subTitle, notes, file, selectedTaskId } =
+  const { completed, title, subTitle, notes, file, selectedTaskId, deleted } =
     useSelector((state) => state.taskItemsSlice);
+
+  const { todoTitle } = useSelector(
+    (state) => state.addTaskSlice
+  );
 
   useEffect(() => {
     reFetchAllTodos(dispatch);
-  }, [dispatch, completed, title, subTitle, notes, file]);
+  }, [dispatch, completed, todoTitle, title, subTitle, notes, file, deleted]);
 
   const { todoData } = useSelector((state) => state.fetchTodosSlice);
 

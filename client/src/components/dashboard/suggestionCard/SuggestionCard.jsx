@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useSelector, useDispatch } from "react-redux";
 import { AiOutlinePlus } from "react-icons/ai";
 import { IoCloseSharp } from "react-icons/io5";
@@ -6,8 +7,9 @@ import {
   comingSoonSlice,
 } from "../../../features/slices/exportSlices";
 
-const SuggestionCard = () => {
+const SuggestionCard = ({todoData}) => {
   const dispatch = useDispatch();
+
   const { removeCard, addSuggestion } = useSelector(
     (state) => state.suggestionSlice
   );
@@ -34,22 +36,11 @@ const SuggestionCard = () => {
 
       <div className="flex gap-2 justify-center flex-col">
         <small className="text-[.7rem] text-[--dash-txt-color1] font-light">
-          Your Task
+          {todoData.title}
         </small>
 
         <p className="text-[.85rem] max-h-[5rem] overflow-hidden text-[#e4e4e4]">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed ut
-          deserunt pariatur facere ullam repellendus nobis, distinctio id unde
-          sit eaque, harum sequi tenetur eveniet consequatur atque, quae tempore
-          consectetur iusto tempora? Iusto inventore delectus alias molestiae,
-          ut expedita labore voluptatem nihil fuga recusandae numquam modi iure
-          omnis consequatur eveniet, quisquam ab, rem placeat quis. Velit
-          aliquam similique cupiditate, vero ratione quaerat voluptates debitis
-          nulla adipisci molestias iste, quis quidem delectus magnam, eius
-          distinctio reiciendis. Cum amet nihil, praesentium et totam esse
-          itaque sint quia veritatis soluta in ullam consectetur facilis
-          dignissimos est sequi inventore placeat optio voluptatum consequatur
-          magni.
+          {todoData.notes || todoData.subTitle}
         </p>
 
         <span className="text-[.75rem] font-medium text-[--pri-color]">
