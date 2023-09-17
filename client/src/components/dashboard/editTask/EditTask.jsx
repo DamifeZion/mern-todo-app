@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaHashtag, FaRegBell } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -10,11 +11,23 @@ import {
 import { IoClose } from "react-icons/io5";
 import { MdMarkChatRead } from "react-icons/md";
 
-const EditTask = () => {
+const EditTask = ({todoData}) => {
   const dispatch = useDispatch();
   const { completed, title, subTitle, notes, file } = useSelector(
     (state) => state.taskItemsSlice
   );
+
+  useEffect(() => {
+    dispatch(taskItemsSlice.actions.setCompleted(todoData.completed))
+
+    dispatch(taskItemsSlice.actions.setTitle(todoData.title))
+
+    dispatch(taskItemsSlice.actions.setSubTitle(todoData.subTitle))
+
+    dispatch(taskItemsSlice.actions.setNotes(todoData.notes))
+
+    dispatch(taskItemsSlice.actions.setFile(todoData.file))
+  }, [dispatch])
 
   const showComingSoon = () => {
     dispatch(comingSoonSlice.actions.showComingSoon());

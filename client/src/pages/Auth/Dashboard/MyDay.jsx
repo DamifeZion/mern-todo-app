@@ -24,8 +24,9 @@ const MyDay = () => {
   }, [dispatch]);
 
   const { todoData } = useSelector((state) => state.fetchTodosSlice);
-  
-  console.log(todoData);
+
+  const { selectedTaskId } = useSelector((state) => state.taskItemsSlice);
+  console.log(selectedTaskId);
 
   const { sideNavVisible } = useSelector((state) => state.sideNavSlice);
   const { hideSuggestion } = useSelector((state) => state.suggestionSlice);
@@ -91,7 +92,10 @@ const MyDay = () => {
             hideEditTask ? "invisible opacity-0" : "visible opacity-100"
           }`}
         >
-          <EditTask />
+          {selectedTaskId &&
+            todoData
+              .filter((todo) => todo._id === selectedTaskId)
+              .map((todo) => <EditTask key={todo._id} todoData={todo}/>)}
         </div>
       </section>
     </div>

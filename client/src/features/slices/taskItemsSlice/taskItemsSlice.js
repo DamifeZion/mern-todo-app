@@ -38,7 +38,7 @@ const taskItemsSlice = createSlice({
     },
 
     resetValues: (state) => {
-      state.checked = false;
+      state.completed = false;
       state.title = "";
       state.subTitle = "";
       state.notes = "";

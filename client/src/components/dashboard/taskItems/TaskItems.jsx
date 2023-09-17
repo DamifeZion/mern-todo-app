@@ -2,35 +2,45 @@
 import {
   taskItemsSlice,
   editTaskSlice,
+  fetchTodosSlice,
 } from "../../../features/slices/exportSlices";
 import { useSelector, useDispatch } from "react-redux";
 import { AiFillEdit, AiOutlinePlus } from "react-icons/ai";
 import { BsCheck } from "react-icons/bs";
 
-const TaskItems = ({ className }) => {
+const TaskItems = ({ className, todoData }) => {
   const dispatch = useDispatch();
-  const { completed, title, subTitle } = useSelector(
+  const { completed, title, subTitle, selectedTaskId } = useSelector(
     (state) => state.taskItemsSlice
   );
-  const {hideEditTask} = useSelector(state => state.editTaskSlice)
-  console.log(hideEditTask)
+
+  const { hideEditTask } = useSelector((state) => state.editTaskSlice);
+
+  console.log(hideEditTask);
 
   const handleCheck = () => {
     dispatch(taskItemsSlice.actions.setCompleted(completed));
   };
 
   const showEditTask = () => {
+    dispatch(taskItemsSlice.actions.setSelectedTaskId(todoData._id));
     dispatch(editTaskSlice.actions.toggleVisibility());
   };
 
   return (
     <div
       id="taskItems"
-      className={`${className} relative bg-[#252525] p-4 flex items-center gap-4 rounded-md group cursor-pointer} ${completed ? 'bg-[#202020]' : 'bg-[#252525]'}`}
+      className={`${className} relative bg-[#252525] p-4 flex items-center gap-4 rounded-md group cursor-pointer} ${
+        todoData.completed ? "bg-[#202020]" : "bg-[#252525]"
+      }`}
     >
       <div
         id="crossCheckedTodos"
-        className={`${completed ? 'flex opacity-50 bg-black bg-opacity-40' : 'hidden '} flex-col items-center justify-center absolute top-0 left-0 w-full h-full overflow-hidden`}
+        className={`${
+          todoData.completed
+            ? "flex opacity-50 bg-black bg-opacity-40"
+            : "hidden "
+        } flex-col items-center justify-center absolute top-0 left-0 w-full h-full overflow-hidden`}
       >
         <span className=" bg-[--dash-txt-color1] w-full h-[2px] z-10 rotate-[6deg]" />
       </div>
@@ -38,11 +48,11 @@ const TaskItems = ({ className }) => {
       <label
         onClick={handleCheck}
         className={`flex w-[20px] relative z-10 h-[20px] rounded-full border-[1.9px] border-[--dash-txt-color1] cursor-pointer 
-          ${completed && "border-[--pri-color] border-[2px]"}`}
+          ${todoData.completed && "border-[--pri-color] border-[2px]"}`}
       >
         <span
           className={`flex items-center justify-center w-full h-full rounded-full bg-[--dash-txt-color1] text-[#252525] duration-300 scale-0 ${
-            completed && "scale-100"
+            todoData.completed && "scale-100"
           }`}
         >
           <BsCheck />
@@ -51,11 +61,11 @@ const TaskItems = ({ className }) => {
 
       <div className=" flex flex-col text-[.9rem] gap-2 overflow-hidden w-[80%]">
         <h4 className=" text-[--dash-txt-color2] text-ellipsis w-full whitespace-nowrap overflow-hidden">
-          {title}
+          {todoData.title}
         </h4>
 
         <p className="text-ellipsis w-full whitespace-nowrap overflow-hidden">
-          {subTitle}
+          {todoData.subTitle}
         </p>
       </div>
 

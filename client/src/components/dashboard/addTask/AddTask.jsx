@@ -14,11 +14,13 @@ import {
 import { comingSoonSlice } from "../../../features/slices/exportSlices";
 
 const AddTask = () => {
-  const dispatch = useDispatch()
-  const { apiData } = useSelector((state) => state.addTaskSlice);
+  const dispatch = useDispatch();
+  // const { apiData } = useSelector((state) => state.addTaskSlice);
 
-  function showComingSoon(){
-    dispatch(comingSoonSlice.actions.showComingSoon())
+  const { todoData } = useSelector((state) => state.fetchTodosSlice);
+
+  function showComingSoon() {
+    dispatch(comingSoonSlice.actions.showComingSoon());
   }
 
   return (
@@ -77,25 +79,19 @@ const AddTask = () => {
 
         <div
           className={`relative flex flex-col mt-8 h-[68%] pb-3 gap-3 overflow-y-auto ${
-            !apiData && "overflow-y-hidden"
+            !todoData && "overflow-y-hidden"
           }`}
         >
           {/* ADDED TASK from API GOES HERE then set that apiData to true */}
-          <TaskItems />
-          <TaskItems />
-          <TaskItems />
-          <TaskItems />
-          <TaskItems />
-          <TaskItems />
-          <TaskItems />
-          <TaskItems />
-          <TaskItems />
-          <TaskItems />
+          {todoData &&
+            todoData.map((todo) => (
+              <TaskItems key={todo._id} todoData={todo} />
+            ))}
 
           <img
             src={halfCircle}
             className={`w-[55%] absolute -bottom-24 right-1/2 translate-x-1/2 ${
-              apiData && "invisible opacity-0 scale-50"
+              todoData && "invisible opacity-0 scale-50"
             }`}
           />
         </div>
