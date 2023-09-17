@@ -15,7 +15,6 @@ import {
 } from "../../../components/exportComponents";
 import { BiArrowToRight } from "react-icons/bi";
 import { PiLightbulbFilament } from "react-icons/pi";
-import { deleteTodoItem } from "../../../middleWares/exportMiddleWare";
 
 const MyDay = () => {
   const dispatch = useDispatch();
@@ -31,6 +30,8 @@ const MyDay = () => {
   }, [dispatch, completed, todoTitle, title, subTitle, notes, file, deleted]);
 
   const { todoData } = useSelector((state) => state.fetchTodosSlice);
+
+  console.table(todoData[0].user_id, todoData[1].user_id, todoData[2].user_id, todoData[3].user_id, todoData[4].user_id, todoData[5].user_id, todoData[6].user_id)
 
   const { sideNavVisible } = useSelector((state) => state.sideNavSlice);
   const { hideSuggestion } = useSelector((state) => state.suggestionSlice);

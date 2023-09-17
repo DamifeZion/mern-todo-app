@@ -5,8 +5,8 @@ const todoModel = require("../models/todoModel");
 
 const getAllTodo = async (req, res) => {
   try {
-    const user_id = req.user._id;
-    const todos = await todoModel.find({ user_id }).sort({ createdAt: -1 });
+    // const user_id = req.user._id;
+    const todos = await todoModel.find({user_id: req.user._id}).sort({ createdAt: -1 });
 
     res.status(200).json(todos);
   } catch (error) {

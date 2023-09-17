@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cors());
 app.get("/", (req, res) => {
   res.setHeader(
-    // "Access-control-Allow-Credentials", "true"
+    "Access-control-Allow-Credentials", "true"
   );
   res.send("API is running...");
 });
