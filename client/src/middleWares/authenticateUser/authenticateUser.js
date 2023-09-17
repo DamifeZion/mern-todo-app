@@ -22,8 +22,6 @@ export const authenticateUser = {
     const decodedToken = jwtDecode(user.token);
     const currentTime = Math.floor(Date.now() / 1000);
 
-    console.log(decodedToken, currentTime);
-
     function resetUser() {
       if (decodedToken.exp <= currentTime) {
         localStorage.removeItem("user");

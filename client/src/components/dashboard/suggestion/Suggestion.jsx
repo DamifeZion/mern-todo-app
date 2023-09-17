@@ -66,11 +66,6 @@ const Suggestion = () => {
 
       <div id="suggestion-chip" className="mt-4 flex flex-col gap-4 overflow-y-scroll h-3/6">
         <SuggestionCard />
-        <SuggestionCard />
-        <SuggestionCard />
-        <SuggestionCard />
-        <SuggestionCard />
-        <SuggestionCard />
       </div>
     </div>
   );

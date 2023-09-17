@@ -29,10 +29,9 @@ const TaskItems = ({ className }) => {
     >
       <div
         id="crossCheckedTodos"
-        className={`${completed ? 'flex opacity-50' : 'hidden'} flex-col items-center justify-center absolute top-0 left-0 w-full h-full overflow-hidden`}
+        className={`${completed ? 'flex opacity-50 bg-black bg-opacity-40' : 'hidden '} flex-col items-center justify-center absolute top-0 left-0 w-full h-full overflow-hidden`}
       >
-        <span className=" bg-[--dash-txt-color1] w-full h-[2px] z-10 rotate-[10deg]" />
-        <span className=" bg-[--dash-txt-color1] w-full h-[2px] z-10 -rotate-[10deg]" />
+        <span className=" bg-[--dash-txt-color1] w-full h-[2px] z-10 rotate-[6deg]" />
       </div>
 
       <label

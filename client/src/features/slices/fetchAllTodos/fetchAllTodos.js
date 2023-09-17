@@ -1,65 +1,71 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  data: [],
-  isLoading: false,
-  error: {
-    status: false,
-    message: "",
-  },
-};
-
 const fetchTodosSlice = createSlice({
-  name: "workoutsSlice",
+  name: "fetchTodosSlice",
 
-  initialState,
+  initialState: {
+    todoData: [],
+    isLoading: false,
+    error: false,
+  },
 
   reducers: {
     dataReceived: (state, action) => {
-      state.data = action.payload;
-      state.isLoading = false,
-      state.error.status = false;
-      state.error.message = "";
-    },
-
-    isLoading: (state) => {
-      state.isLoading = true;
-    },
-
-    error: (state, action) => {
+      state.todoData = action.payload;
       state.isLoading = false;
-      state.error.status = true;
-      state.error.message = action.payload;
+      state.error = false;
     },
+
+    setIsLoading: (state, action) => {
+      state.isLoading = true
+    },
+
+    setError: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload
+    }
   },
 });
 
 //FETCH ALL DATA FROM DATABASE
-const url = "http://localhost:";
+const apiConfig = {
+  url: "http://localhost9000/api/todo",
+  user: JSON.parse(localStorage.getItem("user")),
+};
 
-createAsyncThunk("fetchAllWorkouts/get", async () => {
-  const res = await fetch(url);
-  const data = await res.json();
-  return data;
-});
+const {user, url} = apiConfig
 
-//Fetch from DATABASE when CLIENT POSTS
+createAsyncThunk('fetchAllTodo/GET', async () => {
+  try {
+    const res = await fetch(url, {
+      headers: {'Authorization': `Bearer ${user.token}`}
+    })
+  
+    const data = await res.json()
+    return data;
+  } catch (error) {
+    throw error.message
+  }
+})
+
 const reFetchAllTodos = async (dispatch) => {
   try {
-    dispatch(fetchTodosSlice.actions.isLoading());
-    const res = await fetch(url);
-    const jsonData = res.json();
+    dispatch(fetchTodosSlice.actions.setIsLoading(true))
 
-    if (res.ok) {
-      dispatch(fetchTodosSlice.actions.dataReceived(jsonData));
+    const res = await fetch(url, {
+      headers: {'Authorization': `Bearer ${user.token}`}
+    })
+
+    const json = await res.json()
+
+    if (!res.ok){
+      return dispatch(fetchTodosSlice.actions.setError(json.message))
     }
-  } catch (error) {
-    dispatch(fetchTodosSlice.actions.error(error));
 
-    //clean the below code post production.
-    console.log(error);
-    throw new Error(error);
+    dispatch(fetchTodosSlice.actions.dataReceived(json))
+  } catch (error) {
+    dispatch(fetchTodosSlice.actions.setError(error.message))
   }
-};
+}
 
 export { fetchTodosSlice, reFetchAllTodos };
