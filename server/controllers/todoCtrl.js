@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 //Models import
 const todoModel = require("../models/todoModel");
 
@@ -8,7 +7,7 @@ const getAllTodo = async (req, res) => {
   try {
     const todos = await todoModel.find().sort({ createdAt: -1 });
 
-    res.status(200).json({ results: todos.length, data: todos });
+    res.status(200).json( todos );
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
@@ -121,4 +120,3 @@ module.exports = {
   editTodo,
   deleteTodo,
 };
-

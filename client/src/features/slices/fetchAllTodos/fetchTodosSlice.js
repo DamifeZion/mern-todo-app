@@ -29,7 +29,7 @@ const fetchTodosSlice = createSlice({
 
 //FETCH ALL DATA FROM DATABASE
 const apiConfig = {
-  url: "http://localhost9000/api/todo",
+  url: "http://localhost:9000/api/todo",
   user: JSON.parse(localStorage.getItem("user")),
 };
 

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   sideNavSlice,
   suggestionSlice,
-  reFetchAllTodos
+  reFetchAllTodos,
 } from "../../../features/slices/exportSlices";
 import {
   GearIcon,
@@ -20,10 +20,12 @@ const MyDay = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    reFetchAllTodos(dispatch)
-  }, [dispatch])
+    reFetchAllTodos(dispatch);
+  }, [dispatch]);
 
-  const {todoData} = useSelector(state => state.fetchTodosSlice)
+  const { todoData } = useSelector((state) => state.fetchTodosSlice);
+  
+  console.log(todoData);
 
   const { sideNavVisible } = useSelector((state) => state.sideNavSlice);
   const { hideSuggestion } = useSelector((state) => state.suggestionSlice);
@@ -88,9 +90,8 @@ const MyDay = () => {
           className={`absolute top-0 left-0 w-full h-full ease duration-200 bg-black ${
             hideEditTask ? "invisible opacity-0" : "visible opacity-0"
           }`}
-          
         >
-              <EditTask  />
+          <EditTask />
         </div>
       </section>
     </div>

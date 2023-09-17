@@ -6,6 +6,7 @@ import {
   userSlice,
   sideNavSlice,
   dashboardSlice,
+  fetchTodosSlice,
   addTaskSlice,
   taskItemsSlice,
   suggestionSlice,
@@ -21,6 +22,7 @@ const store = configureStore({
     userSlice: userSlice.reducer,
     sideNavSlice: sideNavSlice.reducer,
     dashboardSlice: dashboardSlice.reducer,
+    fetchTodosSlice: fetchTodosSlice.reducer,
     addTaskSlice: addTaskSlice.reducer,
     taskItemsSlice: taskItemsSlice.reducer,
     //
