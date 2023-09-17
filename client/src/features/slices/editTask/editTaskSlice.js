@@ -4,7 +4,7 @@ const editTaskSlice = createSlice({
   name: "editTaskSlice",
 
   initialState: {
-    hideEditTask: false,
+    hideEditTask: true,
   },
 
   reducers: {
