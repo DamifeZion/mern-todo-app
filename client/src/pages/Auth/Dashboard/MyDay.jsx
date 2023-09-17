@@ -87,8 +87,8 @@ const MyDay = () => {
         </div>
 
         <div
-          className={`absolute top-0 left-0 w-full h-full ease duration-200 bg-black ${
-            hideEditTask ? "invisible opacity-0" : "visible opacity-0"
+          className={`absolute top-0 left-0 w-full h-full ease duration-200 ${
+            hideEditTask ? "invisible opacity-0" : "visible opacity-100"
           }`}
         >
           <EditTask />

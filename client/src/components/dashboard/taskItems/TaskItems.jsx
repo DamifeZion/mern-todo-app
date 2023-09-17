@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
 import {
   taskItemsSlice,
   editTaskSlice,
@@ -13,6 +12,8 @@ const TaskItems = ({ className }) => {
   const { completed, title, subTitle } = useSelector(
     (state) => state.taskItemsSlice
   );
+  const {hideEditTask} = useSelector(state => state.editTaskSlice)
+  console.log(hideEditTask)
 
   const handleCheck = () => {
     dispatch(taskItemsSlice.actions.setCompleted(completed));
@@ -58,7 +59,7 @@ const TaskItems = ({ className }) => {
         </p>
       </div>
 
-      <div className="absolute top-4 right-4 flex items-center invisible group-hover:visible gap-3">
+      <div className="absolute top-4 right-4 flex items-center gap-3">
         <AiFillEdit
           onClick={showEditTask}
           className=" text-[1.3rem] rotate-90 cursor-pointer hover:text-[--dash-txt-color2]"
