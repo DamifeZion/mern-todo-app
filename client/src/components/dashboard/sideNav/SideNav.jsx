@@ -34,7 +34,6 @@ const SideNav = () => {
 
   function logUserOut(){
     dispatch(userSlice.actions.logout())
-    console.log('logOut')
   }
 
   function showComingSoon() {

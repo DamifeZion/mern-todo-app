@@ -16,14 +16,14 @@ const fetchTodosSlice = createSlice({
       state.error = false;
     },
 
-    setIsLoading: (state, action) => {
-      state.isLoading = true
+    setIsLoading: (state) => {
+      state.isLoading = true;
     },
 
     setError: (state, action) => {
       state.isLoading = false;
-      state.error = action.payload
-    }
+      state.error = action.payload;
+    },
   },
 });
 
@@ -33,39 +33,39 @@ const apiConfig = {
   user: JSON.parse(localStorage.getItem("user")),
 };
 
-const {user, url} = apiConfig
+const { user, url } = apiConfig;
 
-createAsyncThunk('fetchAllTodo/GET', async () => {
+createAsyncThunk("fetchAllTodo/GET", async () => {
   try {
     const res = await fetch(url, {
-      headers: {'Authorization': `Bearer ${user.token}`}
-    })
-  
-    const data = await res.json()
+      headers: { Authorization: `Bearer ${user.token}` },
+    });
+
+    const data = await res.json();
     return data;
   } catch (error) {
-    throw error.message
+    throw error.message;
   }
-})
+});
 
 const reFetchAllTodos = async (dispatch) => {
   try {
-    dispatch(fetchTodosSlice.actions.setIsLoading(true))
+    dispatch(fetchTodosSlice.actions.setIsLoading(true));
 
     const res = await fetch(url, {
-      headers: {'Authorization': `Bearer ${user.token}`}
-    })
+      headers: { Authorization: `Bearer ${user.token}` },
+    });
 
-    const json = await res.json()
+    const json = await res.json();
 
-    if (!res.ok){
-      return dispatch(fetchTodosSlice.actions.setError(json.message))
+    if (!res.ok) {
+      return dispatch(fetchTodosSlice.actions.setError(json.message));
     }
 
-    dispatch(fetchTodosSlice.actions.dataReceived(json))
+    dispatch(fetchTodosSlice.actions.dataReceived(json));
   } catch (error) {
-    dispatch(fetchTodosSlice.actions.setError(error.message))
+    dispatch(fetchTodosSlice.actions.setError(error.message));
   }
-}
+};
 
 export { fetchTodosSlice, reFetchAllTodos };

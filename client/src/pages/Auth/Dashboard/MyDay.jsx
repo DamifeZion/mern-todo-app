@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   sideNavSlice,
   suggestionSlice,
+  reFetchAllTodos
 } from "../../../features/slices/exportSlices";
 import {
   GearIcon,
@@ -16,6 +18,7 @@ import { PiLightbulbFilament } from "react-icons/pi";
 
 const MyDay = () => {
   const dispatch = useDispatch();
+
   const { sideNavVisible } = useSelector((state) => state.sideNavSlice);
   const { hideSuggestion } = useSelector((state) => state.suggestionSlice);
   const { hideEditTask } = useSelector((state) => state.editTaskSlice);
@@ -75,12 +78,13 @@ const MyDay = () => {
           )}
         </div>
 
-        <div className={`absolute top-0 left-0 w-full h-full ease duration-200 ${hideEditTask ? 'visible opacity-100' : 'invisible opacity-0'}`}>
-          <EditTask />
-        </div>
-
-        <div>
+        <div
+          className={`absolute top-0 left-0 w-full h-full ease duration-200 bg-black ${
+            hideEditTask ? "invisible opacity-0" : "visible opacity-0"
+          }`}
           
+        >
+              <EditTask  />
         </div>
       </section>
     </div>
