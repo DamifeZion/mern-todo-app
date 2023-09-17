@@ -5,7 +5,8 @@ const todoModel = require("../models/todoModel");
 
 const getAllTodo = async (req, res) => {
   try {
-    const todos = await todoModel.find().sort({ createdAt: -1 });
+    const user_id = req.user._id;
+    const todos = await todoModel.find({ user_id }).sort({ createdAt: -1 });
 
     res.status(200).json(todos);
   } catch (error) {
@@ -37,17 +38,18 @@ const addTodo = async (req, res) => {
   const { completed, title, subTitle, notes } = req.body;
 
   try {
-    const user_id = req.user._id;
     if (!title) {
       return res.status(400).json({ message: "Title is required" });
     }
+
+    const user_id = req.user._id;
 
     const newTodo = await todoModel.create({
       completed,
       title,
       subTitle,
       notes,
-      user_id
+      user_id,
     });
 
     res.status(201).json({
