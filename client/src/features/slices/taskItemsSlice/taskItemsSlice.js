@@ -10,11 +10,15 @@ const taskItemsSlice = createSlice({
     notes: "Notes",
     file: "",
     selectedTaskId: "",
+
+    updated: false,
+    isLoading: false,
+    error: false,
   },
 
   reducers: {
     setCompleted: (state, action) => {
-      state.completed = action.payload;
+      state.completed = !state.completed;
     },
 
     setTitle: (state, action) => {
@@ -37,13 +41,19 @@ const taskItemsSlice = createSlice({
       state.selectedTaskId = action.payload;
     },
 
-    resetValues: (state) => {
-      state.completed = false;
-      state.title = "";
-      state.subTitle = "";
-      state.notes = "";
-      state.file = "";
-      state.selectedTaskId = "";
+    setUpdated: (state) => {
+      state.updated = true;
+      state.isLoading = false;
+      state.error = false;
+    },
+
+    setIsloading: (state) => {
+      state.isLoading = true;
+    },
+
+    setError: (state, action) => {
+      state.error = action.payload;
+      (state.isLoading = false), (state.updated = false);
     },
   },
 });

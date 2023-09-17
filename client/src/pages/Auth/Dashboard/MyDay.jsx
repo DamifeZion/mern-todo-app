@@ -18,15 +18,14 @@ import { PiLightbulbFilament } from "react-icons/pi";
 
 const MyDay = () => {
   const dispatch = useDispatch();
+  const { completed, title, subTitle, notes, file, selectedTaskId } =
+    useSelector((state) => state.taskItemsSlice);
 
   useEffect(() => {
     reFetchAllTodos(dispatch);
-  }, [dispatch]);
+  }, [dispatch, completed, title, subTitle, notes, file]);
 
   const { todoData } = useSelector((state) => state.fetchTodosSlice);
-
-  const { selectedTaskId } = useSelector((state) => state.taskItemsSlice);
-  console.log(selectedTaskId);
 
   const { sideNavVisible } = useSelector((state) => state.sideNavSlice);
   const { hideSuggestion } = useSelector((state) => state.suggestionSlice);
@@ -95,7 +94,7 @@ const MyDay = () => {
           {selectedTaskId &&
             todoData
               .filter((todo) => todo._id === selectedTaskId)
-              .map((todo) => <EditTask key={todo._id} todoData={todo}/>)}
+              .map((todo) => <EditTask key={todo._id} todoData={todo} />)}
         </div>
       </section>
     </div>

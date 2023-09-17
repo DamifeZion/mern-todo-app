@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { FaHashtag, FaRegBell } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -10,31 +10,27 @@ import {
 } from "../../../features/slices/exportSlices";
 import { IoClose } from "react-icons/io5";
 import { MdMarkChatRead } from "react-icons/md";
+import { editTodoItems } from "../../../middleWares/exportMiddleWare";
 
-const EditTask = ({todoData}) => {
+const EditTask = ({ todoData }) => {
   const dispatch = useDispatch();
-  const { completed, title, subTitle, notes, file } = useSelector(
-    (state) => state.taskItemsSlice
-  );
+  const { completed, title, subTitle, notes, file, selectedTaskId } =
+    useSelector((state) => state.taskItemsSlice);
 
   useEffect(() => {
-    dispatch(taskItemsSlice.actions.setCompleted(todoData.completed))
+    dispatch(taskItemsSlice.actions.setCompleted(todoData.completed));
 
-    dispatch(taskItemsSlice.actions.setTitle(todoData.title))
+    dispatch(taskItemsSlice.actions.setTitle(todoData.title));
 
-    dispatch(taskItemsSlice.actions.setSubTitle(todoData.subTitle))
+    dispatch(taskItemsSlice.actions.setSubTitle(todoData.subTitle));
 
-    dispatch(taskItemsSlice.actions.setNotes(todoData.notes))
+    dispatch(taskItemsSlice.actions.setNotes(todoData.notes));
 
-    dispatch(taskItemsSlice.actions.setFile(todoData.file))
-  }, [dispatch])
+    dispatch(taskItemsSlice.actions.setFile(todoData.file));
+  }, [dispatch]);
 
   const showComingSoon = () => {
     dispatch(comingSoonSlice.actions.showComingSoon());
-  };
-
-  const hideEditTask = () => {
-    dispatch(editTaskSlice.actions.toggleVisibility());
   };
 
   const handleTitleChange = (e) => {
@@ -56,11 +52,20 @@ const EditTask = ({todoData}) => {
     console.log(notes);
   };
 
+  //Below hides and submit the edit task because for better speed as performing post request every time a user types will reduce speed due to slow server I use
+  const hideEditTaskAndSubmit = () => {
+    dispatch(editTaskSlice.actions.toggleVisibility());
+
+    const formData = { completed, title, subTitle, notes, file };
+
+    editTodoItems(selectedTaskId, dispatch, formData);
+  };
+
   return (
     <div className="relative text-[#fff] flex items-center justify-center w-full h-full overflow-hidden">
       {/* the below span is to listen for a click in case a user clicks out of the form */}
       <span
-        onClick={hideEditTask}
+        onClick={hideEditTaskAndSubmit}
         className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50"
       />
 
@@ -70,7 +75,9 @@ const EditTask = ({todoData}) => {
       >
         {/* When todo completes the below span shows to  disables form */}
         <span
-          className={`${completed ? 'block' : 'hidden'} select-none absolute top-0 left-0 w-full h-full bg-[#1b1b1b96] rounded-2xl`}
+          className={`${
+            completed ? "block" : "hidden"
+          } select-none absolute top-0 left-0 w-full h-full bg-[#1b1b1b96] rounded-2xl`}
         />
 
         <div className="flex w-full items-center justify-between">
@@ -92,7 +99,7 @@ const EditTask = ({todoData}) => {
 
             <IoClose
               title="Close"
-              onClick={hideEditTask}
+              onClick={hideEditTaskAndSubmit}
               className="text-[#a2a2a2] text-[1.5rem] hover:text-[--pri-color] cursor-pointer z-50"
             />
           </div>

@@ -10,13 +10,9 @@ import { BsCheck } from "react-icons/bs";
 
 const TaskItems = ({ className, todoData }) => {
   const dispatch = useDispatch();
-  const { completed, title, subTitle, selectedTaskId } = useSelector(
-    (state) => state.taskItemsSlice
-  );
+  const { completed } = useSelector((state) => state.taskItemsSlice);
 
   const { hideEditTask } = useSelector((state) => state.editTaskSlice);
-
-  console.log(hideEditTask);
 
   const handleCheck = () => {
     dispatch(taskItemsSlice.actions.setCompleted(completed));
