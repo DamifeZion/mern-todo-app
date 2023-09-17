@@ -7,7 +7,7 @@ const getAllTodo = async (req, res) => {
   try {
     const todos = await todoModel.find().sort({ createdAt: -1 });
 
-    res.status(200).json( todos );
+    res.status(200).json(todos);
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
@@ -37,6 +37,7 @@ const addTodo = async (req, res) => {
   const { completed, title, subTitle, notes } = req.body;
 
   try {
+    const user_id = req.user._id;
     if (!title) {
       return res.status(400).json({ message: "Title is required" });
     }
@@ -46,6 +47,7 @@ const addTodo = async (req, res) => {
       title,
       subTitle,
       notes,
+      user_id
     });
 
     res.status(201).json({

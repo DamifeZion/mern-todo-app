@@ -18,6 +18,11 @@ const todoSchema = mongoose.Schema(
     notes: {
       type: String,
     },
+
+    user_id: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
@@ -25,4 +30,3 @@ const todoSchema = mongoose.Schema(
 const todoModel = mongoose.model("Todo", todoSchema);
 
 module.exports = todoModel;
-
