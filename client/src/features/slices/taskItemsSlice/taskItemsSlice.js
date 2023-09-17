@@ -13,8 +13,8 @@ const taskItemsSlice = createSlice({
   },
 
   reducers: {
-    setCompleted: (state) => {
-      state.completed = !state.completed;
+    setCompleted: (state, action) => {
+      state.completed = action.payload;
     },
 
     setTitle: (state, action) => {
