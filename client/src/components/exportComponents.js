@@ -16,6 +16,8 @@ export { default as SuggestionCard } from "./dashboard/suggestionCard/Suggestion
 export { default as TaskItems } from "./dashboard/taskItems/TaskItems";
 export {default as IsLoading} from './dashboard/isLoading/IsLoading'
 
+export {default as SmallScreens} from './dashboard/smallScreens/SmallScreens'
+
 //Atoms
 export { default as GearIcon } from "./gearIcon/GearIcon";
 export { default as GreetUser } from "./greetUser/GreetUser";

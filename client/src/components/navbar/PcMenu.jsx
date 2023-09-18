@@ -10,12 +10,6 @@ const PcMenu = () => {
           <Link to="/" className="text-[--txt-color] hover:text-black">
             Home
           </Link>
-
-          <Link
-            to="/about"
-           className="text-[--txt-color] hover:text-black">
-            About
-          </Link>
         </ol>
 
         <Link to="/login" className="">

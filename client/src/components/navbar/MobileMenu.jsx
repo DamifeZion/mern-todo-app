@@ -43,12 +43,6 @@ const MobileMenu = () => {
             <HomeRounded />
             Home
           </Link>
-
-          <Link 
-            to='/about'
-            className="ease duration-150 hover:text-[--neutral-color] text-[--bg-color] w-full flex gap-1 items-center justify-center py-3">
-            About Us
-          </Link>
         </ol>
 
         <Link to="/login" className=" w-full">

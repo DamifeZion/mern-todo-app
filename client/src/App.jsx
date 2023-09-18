@@ -1,23 +1,18 @@
 import { useLayoutEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useMediaQuery } from "@mui/material";
 
 // Component Imports
-import {
-  Home,
-  About,
-  Login,
-  PasswordReset,
-  Signup,
-  MyDay,
-} from "./pages/exportPages";
-
+import { Home, Login, PasswordReset, Signup, MyDay } from "./pages/exportPages";
+import { SmallScreens } from "./components/exportComponents";
 import { RequireAuth } from "./middleWares/exportMiddleWare";
 import { authenticateUser } from "./middleWares/exportMiddleWare";
 
 function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const largeScreens = useMediaQuery("(min-width: 1200px)");
 
   const { requireUser, handleTokenExpiration } = authenticateUser;
 
@@ -38,7 +33,6 @@ function App() {
     <div>
       <Routes>
         <Route index element={<Home />} />
-        <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/password/reset" element={<PasswordReset />} />
@@ -48,9 +42,13 @@ function App() {
         <Route
           path="/dashboard/myday"
           element={
-            <RequireAuth>
-              <MyDay />
-            </RequireAuth>
+            largeScreens ? (
+              <RequireAuth>
+                <MyDay />
+              </RequireAuth>
+            ) : (
+              <SmallScreens />
+            )
           }
         />
       </Routes>
