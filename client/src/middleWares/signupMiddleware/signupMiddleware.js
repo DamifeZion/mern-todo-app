@@ -93,7 +93,7 @@ const signupMiddleware = {
     } catch (error) {
 
       if(error.message === "Failed to fetch") 
-      \
+      dispatch(signupSlice.actions.setError("No"))
 
       enableButton();
     }
