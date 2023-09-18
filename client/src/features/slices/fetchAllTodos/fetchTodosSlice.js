@@ -1,13 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+  todoData: [],
+  isLoading: false,
+  error: false,
+};
+
 const fetchTodosSlice = createSlice({
   name: "fetchTodosSlice",
 
-  initialState: {
-    todoData: [],
-    isLoading: false,
-    error: false,
-  },
+  initialState,
 
   reducers: {
     dataReceived: (state, action) => {
@@ -23,6 +25,10 @@ const fetchTodosSlice = createSlice({
     setError: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
+    },
+
+    resetData: (state) => {
+      state.todoData = [];
     },
   },
 });
@@ -64,7 +70,9 @@ const reFetchAllTodos = async (dispatch) => {
 
     dispatch(fetchTodosSlice.actions.dataReceived(json));
   } catch (error) {
-    dispatch(fetchTodosSlice.actions.setError(error.message));
+    if (error.message === "Failed to fetch") console.log("No Internet Connection");
+    if (error.message === "Failed to fetch")
+      dispatch(fetchTodosSlice.actions.setError("No Internet Connection"));
   }
 };
 

@@ -1,7 +1,4 @@
-import {
-  signupSlice,
-  userSlice,
-} from "../../features/slices/exportSlices";
+import { signupSlice, userSlice } from "../../features/slices/exportSlices";
 
 const signupMiddleware = {
   handlePasswordChange: (e, listItems, dispatch) => {
@@ -86,7 +83,7 @@ const signupMiddleware = {
       if (res.ok) {
         dispatch(signupSlice.actions.resetValue());
         dispatch(signupSlice.actions.setSuccess(true));
-        
+
         localStorage.setItem("user", JSON.stringify(json));
         dispatch(userSlice.actions.setUser(json));
 
@@ -94,10 +91,11 @@ const signupMiddleware = {
         navigate("/dashboard/myday");
       }
     } catch (error) {
-      if (error) {
-        enableButton();
-        dispatch(signupSlice.actions.setError(error.message));
-      }
+
+      if(error.message === "Failed to fetch") 
+      \
+
+      enableButton();
     }
   },
 };

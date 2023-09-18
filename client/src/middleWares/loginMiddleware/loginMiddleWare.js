@@ -1,7 +1,4 @@
-import {
-  loginSlice,
-  userSlice,
-} from "../../features/slices/exportSlices";
+import { loginSlice, userSlice } from "../../features/slices/exportSlices";
 
 const loginMiddleWare = {
   handleSubmit: async (buttonRef, e, dispatch, navigate, formData) => {
@@ -36,7 +33,7 @@ const loginMiddleWare = {
       if (res.ok) {
         dispatch(loginSlice.actions.setSuccess(true));
         dispatch(loginSlice.actions.resetValue());
-        
+
         localStorage.setItem("user", JSON.stringify(json));
         dispatch(userSlice.actions.setUser(json));
 
@@ -44,7 +41,11 @@ const loginMiddleWare = {
         navigate("/dashboard/myday");
       }
     } catch (error) {
+      if (error.message === "Failed to fetch")
+        return dispatch(loginSlice.actions.setError("No Internet Connection"));
+
       dispatch(loginSlice.actions.setError(error.message));
+
       enableButton();
     }
   },

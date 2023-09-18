@@ -55,8 +55,7 @@ const taskItemsSlice = createSlice({
 
     setError: (state, action) => {
       state.error = action.payload;
-      state.isLoading = false,
-      state.updated = false;
+      (state.isLoading = false), (state.updated = false);
       state.deleted = false;
     },
 
@@ -64,6 +63,7 @@ const taskItemsSlice = createSlice({
       state.deleted = action.payload;
       state.error = false;
     },
+
   },
 });
 

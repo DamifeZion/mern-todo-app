@@ -5,6 +5,7 @@ import {
   userSlice,
   sideNavSlice,
   comingSoonSlice,
+  fetchTodosSlice,
 } from "../../../features/slices/exportSlices";
 
 import SideNavChip from "../../dashboard/sideNavChip/SideNavChip";
@@ -24,6 +25,7 @@ const SideNav = () => {
   const { user } = useSelector((state) => state.userSlice);
   const { sideNavImgVisible } = useSelector((state) => state.sideNavSlice);
 
+
   function hideImage() {
     dispatch(sideNavSlice.actions.hideSideNavImg());
   }
@@ -33,6 +35,7 @@ const SideNav = () => {
   }
 
   function logUserOut(){
+    dispatch(fetchTodosSlice.actions.resetData())
     dispatch(userSlice.actions.logout())
   }
 
