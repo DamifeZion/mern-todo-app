@@ -27,7 +27,7 @@ const MyDay = () => {
 
   useEffect(() => {
     reFetchAllTodos(dispatch);
-  }, [dispatch, completed, todoTitle, title, subTitle, notes, file, deleted]);
+  }, [dispatch, completed, todoTitle, title, subTitle, notes, file, deleted])
 
   const { todoData } = useSelector((state) => state.fetchTodosSlice);
 

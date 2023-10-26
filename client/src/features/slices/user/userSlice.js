@@ -22,6 +22,7 @@ const userSlice = createSlice({
       }
 
       state.user = null;
+      window.location.href = "/login";
       localStorage.removeItem("user");
     },
   },
